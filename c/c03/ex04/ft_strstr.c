@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rony-lov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 04:10:32 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/17 04:42:33 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:32:45 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	compare(char *a, char *b)
 
 char	*ft_strstr(char *str, char *to_find)
 {
+	if (!to_find[0])
+		return (str);
 	while (*str != '\0')
 	{
 		if ((*str == *to_find) && compare(str, to_find))
@@ -34,5 +36,5 @@ char	*ft_strstr(char *str, char *to_find)
 		}
 		str++;
 	}
-	return ("\0");
+	return (0);
 }
