@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:48:37 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/18 11:48:58 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:06:19 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	unsigned int	i;
 
 	i = 0;
-	while (*s1 && (*s1 == *s2) && i < n)
+	while (*s1 && (*s1 == *s2) && i <= n)
 	{
 		s1++;
 		s2++;
