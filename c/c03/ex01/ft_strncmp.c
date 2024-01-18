@@ -6,20 +6,21 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:48:37 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/18 14:06:19 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:52:36 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_strncmp(const char *s1, const char *s2, int n)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (*s1 && (*s1 == *s2) && i <= n)
+	while (n && *s1 && (*s1 == *s2))
 	{
-		s1++;
-		s2++;
-		i++;
+		++s1;
+		++s2;
+		--n;
 	}
-	return (*s1 - *s2);
+	if (n == 0)
+	{
+		return (0);
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
