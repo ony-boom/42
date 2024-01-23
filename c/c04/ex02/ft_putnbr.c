@@ -40,4 +40,3 @@ void	ft_putnbr(int nb)
 		ft_putchar(nb + 48);
 	}
 }
-
