@@ -1,42 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 17:00:14 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/23 17:39:58 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/01/24 07:52:22 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/01/24 08:40:00 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
-void	ft_putchar(char c)
+int	ft_strlen(char *str)
 {
-	write(1, &c, 1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-void	ft_putnbr(int nb)
+char	*ft_strcpy(char *dest, char *src)
 {
-	if (nb == -2147483648)
+	int	i;
+
+	i = 0;
+	while (src[i])
 	{
-		ft_putchar('-');
-		ft_putchar('2');
-		nb = 147483648;
+		dest[i] = src[i];
+		i++;
 	}
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-	{
-		ft_putchar(nb + 48);
-	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strdup(char *src)
+{
+	int		len;
+	char	*new;
+
+	len = ft_strlen(src);
+	new = malloc((len + 1) * sizeof(char));
+	if (new == 0)
+		return (0);
+	ft_strcpy(new, src);
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:30:03 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/19 14:55:26 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/01/24 01:34:44 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,7 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	}
 	return (dest_len + src_len);
 }
+// size: 8
+// Kharil => dest
+// Josea => src
+// Kharil J

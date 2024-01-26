@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 17:00:14 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/23 17:39:58 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/01/24 08:05:32 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/01/24 09:15:21 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
-void	ft_putchar(char c)
+int	*ft_range(int min, int max)
 {
-	write(1, &c, 1);
-}
+	int	i;
+	int	c;
+	int	size;
+	int	*range;
 
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
+	i = 0;
+	c = min;
+	range = 0;
+	size = max - min;
+	if (size < 0)
+		return ((void *)range);
+	range = (int *)malloc(size * sizeof(int));
+	while (i < size)
 	{
-		ft_putchar('-');
-		ft_putchar('2');
-		nb = 147483648;
+		range[i] = c;
+		c++;
+		i++;
 	}
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-	{
-		ft_putchar(nb + 48);
-	}
+	return (range);
 }

@@ -6,13 +6,13 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 07:33:50 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/22 15:04:08 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/01/23 20:24:51 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*trim_start(char *str)
 {
-	while (*str && (*str == ' ' || *str == '0'))
+	while (*str && (*str >= 0 && *str <= 32))
 		str++;
 	return (str);
 }

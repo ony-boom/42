@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 21:22:31 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/21 06:45:01 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:52:34 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	solved(int **map, int size)
 		j = 0;
 		while (j < size)
 		{
-			if (map[i][i] == 0)
+			if (map[i][j] == 0)
 			{
 				return (0);
 			}
