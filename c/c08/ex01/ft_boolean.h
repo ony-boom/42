@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_boolean.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 22:40:15 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/29 22:38:59 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/01/29 19:08:17 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/01/29 20:58:17 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
-{
-	int	i;
+#ifndef FT_BOOLEAN_H
+# define FT_BOOLEAN_H
 
-	if (nb < 0)
-		return (0);
-	i = 1;
-	while (i * i < nb && i < 46340)
-		i++;
-	if (i * i == nb)
-		return (i);
-	return (0);
-}
+# include <unistd.h>
+
+# define EVEN_MSG "I have an even number of arguments.\n"
+# define ODD_MSG "I have an odd number of arguments.\n"
+
+# define SUCCESS 0
+
+typedef enum e_bool
+{
+	TRUE,
+	FALSE
+}	t_bool;
+
+# define EVEN(n) (n % 2 == 0)
+
+#endif // FT_BOOLEAN_H

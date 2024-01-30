@@ -6,11 +6,11 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 18:24:12 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/27 17:32:22 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:51:15 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	power(int nb, int power)
+int	ft_recursive_power(int nb, int power)
 {
 	if (power < 0)
 		return (0);
@@ -18,5 +18,5 @@ int	power(int nb, int power)
 		return (1);
 	if (power == 1)
 		return (nb);
-	return (power(nb, power - 1) * nb);
+	return (ft_recursive_power(nb, power - 1) * nb);
 }
