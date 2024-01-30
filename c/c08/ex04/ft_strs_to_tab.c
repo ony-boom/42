@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strs_to_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: username <your@mail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:27:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/30 06:32:28 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:30:57 by username         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stock_str.h"
 #include <stdlib.h>
+
+void				ft_show_tab(struct s_stock_str *par);
 
 char	*ft_strcpy(char *dest, char *src)
 {

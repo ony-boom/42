@@ -6,12 +6,12 @@
 /*   By: username <your@mail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 06:34:51 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/30 10:02:51 by username         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:27:58 by username         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "ft_stock_str.h"
+#include <unistd.h>
 
 void	ft_putchar(char c)
 {
@@ -51,15 +51,16 @@ void	ft_putnbr(int nb)
 	}
 }
 
-void ft_show_tab(struct s_stock_str *par)
+void	ft_show_tab(struct s_stock_str *par)
 {
-  while (*par->str != 0) {
-    ft_putstr(par->str);
-    ft_putstr("\n");
-    ft_putstr(par->copy);
-    ft_putstr("\n");
-    ft_putnbr(par->size);
-    ft_putstr("\n");
-    par++;
-  }
+	while (par->str != 0)
+	{
+		ft_putstr(par->str);
+		ft_putstr("\n");
+		ft_putstr(par->copy);
+		ft_putstr("\n");
+		ft_putnbr(par->size);
+		ft_putstr("\n");
+		par++;
+	}
 }
