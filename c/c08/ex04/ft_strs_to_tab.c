@@ -6,7 +6,7 @@
 /*   By: username <your@mail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:27:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/01/30 11:30:57 by username         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:33:46 by username         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 
 	i = 0;
 	stock = malloc(sizeof(struct s_stock_str) * (ac + 1));
-	if (stock == NULL)
+	if (stock == 0)
 		return (0);
 	while (i < ac)
 	{
