@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_islower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: username <your@mail.com>                   +#+  +:+       +#+        */
+/*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 14:11:22 by username          #+#    #+#             */
-/*   Updated: 2024/02/19 14:31:31 by username         ###   ########.fr       */
+/*   Created: 2024/02/20 05:59:18 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/02/20 05:59:19 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int ft_islower(int c)
