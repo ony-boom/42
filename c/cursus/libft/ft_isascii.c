@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int ft_isascii(int c)
+int	ft_isascii(int c)
 {
-  return ft_isinrange((unsigned int)c, 0, 127);
+	return (ft_isinrange((unsigned int)c, 0, 127));
 }

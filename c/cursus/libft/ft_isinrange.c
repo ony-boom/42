@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isinrange(int n, int min, int max)
+int	ft_isinrange(int n, int min, int max)
 {
-  return  n >= min && n <= max;
+	return (n >= min && n <= max);
 }

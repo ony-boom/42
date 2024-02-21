@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int ft_islower(int c)
+int	ft_islower(int c)
 {
-  return  ft_isinrange(c, 'a', 'z');
+	return (ft_isinrange(c, 'a', 'z'));
 }

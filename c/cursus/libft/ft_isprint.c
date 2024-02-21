@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int ft_isprint(int c)
+int	ft_isprint(int c)
 {
-  return ft_isinrange(c, 32, 126);
+	return (ft_isinrange(c, 32, 126));
 }

@@ -20,3 +20,8 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+format: $(SRC)
+	@for file in ./*.c; do \
+		c_formatter_42 "$$file"; \
+	done
