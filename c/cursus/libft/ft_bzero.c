@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:54:38 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/20 06:11:29 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:49:00 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,5 @@
 
 void	ft_bzero(void *s, int n)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = (char *)s;
-	while (i < n)
-	{
-		str[i] = 0;
-		str++;
-	}
+	ft_memset(s, 0, n);
 }

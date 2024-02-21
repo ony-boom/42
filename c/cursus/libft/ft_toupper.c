@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:52:50 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/20 19:42:42 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:41:54 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	ft_toupper(int c)
 {
-	char	as_char;
+	unsigned char	upper;
 
-	as_char = (unsigned char)c;
-	if (ft_islower(as_char))
-		as_char -= 32;
-	return (as_char);
+	upper = c;
+	if (!ft_islower(c))
+		return (upper);
+	upper = c - 'a' + 'A';
+	if (!ft_isalpha(upper))
+		return (c);
+	return (upper);
 }

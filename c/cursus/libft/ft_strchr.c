@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 06:22:10 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/21 07:09:39 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:04:18 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	char *src = (char *)s;
-	while (*src && *src != c)
+	char	*src;
+
+	src = (char *)s;
+	if (c == '\0')
+		return (char *)s + ft_strlen(s);
+	while (*src)
+	{
+		if (*src == c)
+			return (src);
 		src++;
-	if (!src)
-		return (0);
-	return ((char *)src);
+	}
+	return (0);
 }
