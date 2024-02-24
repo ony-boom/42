@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 04:10:32 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/24 10:32:54 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/02/24 12:00:46 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/02/24 12:02:54 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	compare(char *a, char *b)
-{
-	while (*a && *b)
-	{
-		if (*a != *b)
-		{
-			return (0);
-		}
-		a++;
-		b++;
-	}
-	return (*b == '\0');
-}
+#include "libft.h"
 
-char	*ft_strstr(char *str, char *to_find)
+char	*ft_strdup(const char *src)
 {
-	if (!to_find[0])
-		return (str);
-	while (*str != '\0')
-	{
-		if ((*str == *to_find) && compare(str, to_find))
-		{
-			return (str);
-		}
-		str++;
-	}
-	return (0);
+	int		len;
+	char	*new;
+
+	len = ft_strlen(src);
+	new = malloc((len + 1) * sizeof(char));
+	if (new == 0)
+		return (0);
+	ft_strlcpy(new, src, len + 1);
+	return (new);
 }

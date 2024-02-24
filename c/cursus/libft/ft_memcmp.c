@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 04:10:32 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/24 10:32:54 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/02/24 10:20:40 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/02/24 10:29:03 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	compare(char *a, char *b)
-{
-	while (*a && *b)
-	{
-		if (*a != *b)
-		{
-			return (0);
-		}
-		a++;
-		b++;
-	}
-	return (*b == '\0');
-}
+#include "libft.h"
 
-char	*ft_strstr(char *str, char *to_find)
+int	ft_memcmp(const void *s1, const void *s2, int n)
 {
-	if (!to_find[0])
-		return (str);
-	while (*str != '\0')
+	unsigned char	*src1;
+	unsigned char	*src2;
+
+	src1 = (unsigned char *)s1;
+	src2 = (unsigned char *)s2;
+	while (n && (*src1 == *src2))
 	{
-		if ((*str == *to_find) && compare(str, to_find))
-		{
-			return (str);
-		}
-		str++;
+		++src1;
+		++src2;
+		--n;
 	}
-	return (0);
+	if (!n)
+		return (0);
+	return (*src1 - *src2);
 }
