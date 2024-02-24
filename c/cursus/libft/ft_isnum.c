@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 04:10:32 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/24 10:32:54 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/02/24 11:32:07 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/02/24 11:32:24 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	compare(char *a, char *b)
-{
-	while (*a && *b)
-	{
-		if (*a != *b)
-		{
-			return (0);
-		}
-		a++;
-		b++;
-	}
-	return (*b == '\0');
-}
+#include "libft.h"
 
-char	*ft_strstr(char *str, char *to_find)
+int	ft_isnum(char c, int *c_as_int)
 {
-	if (!to_find[0])
-		return (str);
-	while (*str != '\0')
-	{
-		if ((*str == *to_find) && compare(str, to_find))
-		{
-			return (str);
-		}
-		str++;
-	}
-	return (0);
+	int	as_int;
+	int	is_ok;
+
+	as_int = c - '0';
+	is_ok = as_int >= 0 && as_int <= 9;
+	if (is_ok)
+		*c_as_int = as_int;
+	return (is_ok);
 }

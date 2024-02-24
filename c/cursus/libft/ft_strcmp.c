@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 04:10:32 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/24 10:32:54 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/02/24 10:32:15 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/02/24 15:04:15 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	compare(char *a, char *b)
-{
-	while (*a && *b)
-	{
-		if (*a != *b)
-		{
-			return (0);
-		}
-		a++;
-		b++;
-	}
-	return (*b == '\0');
-}
+#include "libft.h"
 
-char	*ft_strstr(char *str, char *to_find)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (!to_find[0])
-		return (str);
-	while (*str != '\0')
+	while (*s1 && (*s1 == *s2))
 	{
-		if ((*str == *to_find) && compare(str, to_find))
-		{
-			return (str);
-		}
-		str++;
+		s1++;
+		s2++;
 	}
-	return (0);
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

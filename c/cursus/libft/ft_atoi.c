@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 04:10:32 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/24 10:32:54 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/02/24 11:29:17 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/02/24 11:43:58 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	compare(char *a, char *b)
-{
-	while (*a && *b)
-	{
-		if (*a != *b)
-		{
-			return (0);
-		}
-		a++;
-		b++;
-	}
-	return (*b == '\0');
-}
+#include "libft.h"
 
-char	*ft_strstr(char *str, char *to_find)
+int	ft_atoi(const char *base_str)
 {
-	if (!to_find[0])
-		return (str);
-	while (*str != '\0')
+	int		num;
+	char	*str;
+	int		str_n;
+	int		is_negative;
+
+	num = 0;
+	str = trim_start((char *)base_str);
+	is_negative = *str == '-';
+	if (*str == '-' || *str == '+')
+		str++;
+	if (!*str || !ft_isnum(*str, &str_n))
+		return (0);
+	num = *str - '0';
+	str++;
+	while (ft_isnum(*str, &str_n))
 	{
-		if ((*str == *to_find) && compare(str, to_find))
-		{
-			return (str);
-		}
+		num *= 10;
+		num += str_n;
 		str++;
 	}
-	return (0);
+	if (is_negative)
+		num *= -1;
+	return (num);
 }

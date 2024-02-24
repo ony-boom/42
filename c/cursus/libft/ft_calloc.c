@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 04:10:32 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/24 10:32:54 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/02/24 11:48:54 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/02/24 11:58:55 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	compare(char *a, char *b)
-{
-	while (*a && *b)
-	{
-		if (*a != *b)
-		{
-			return (0);
-		}
-		a++;
-		b++;
-	}
-	return (*b == '\0');
-}
+#include "libft.h"
 
-char	*ft_strstr(char *str, char *to_find)
+void	*ft_calloc(int nitems, int size)
 {
-	if (!to_find[0])
-		return (str);
-	while (*str != '\0')
+	int				i;
+	unsigned char	*mem;
+
+	mem = malloc(nitems * size);
+	i = 0;
+	if (mem)
 	{
-		if ((*str == *to_find) && compare(str, to_find))
+		while (i < nitems * size)
 		{
-			return (str);
+			mem[i] = 0;
+			i++;
 		}
-		str++;
 	}
-	return (0);
+	return (mem);
 }
