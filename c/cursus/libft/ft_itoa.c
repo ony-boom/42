@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:07:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/26 07:20:20 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/26 07:26:54 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ char	*ft_itoa(int n)
 	number = ft_abs(n);
 	len = get_len(n) + 1;
 	i = len - 2;
-	str = ft_calloc(len, sizeof(int));
-
+	str = ft_calloc(len, sizeof(char));
 	if (!str)
 		return (NULL);
-
 	while (i >= 0)
 	{
 		str[i] = (number % 10) + '0';
