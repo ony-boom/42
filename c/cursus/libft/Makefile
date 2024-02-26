@@ -1,22 +1,29 @@
 CC = cc
 NAME = libft.a
-INCLUDE = libft.h
+HEADER = libft.h
 SRC := $(wildcard ft_*.c) 
-C_FLAGS = -Wall -Wextra -Werror
 OBJECTS := $(SRC:.c=.o)
+
+C_FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME) clean
 
-OBJECTS: $(SRC) $(INCLUDE)
-	$(CC) $(C_FLAGS) -c $(SRC)
+OBJECTS: $(SRC) $(HEADER)
+	@echo "Making .o"
+	@$(CC) $(C_FLAGS) -c $(SRC)
 
 $(NAME): OBJECTS
-	ar -crs $(NAME) $(OBJECTS)
+	@echo "Making $(NAME)"
+	@ar -crs $(NAME) $(OBJECTS)
 
-clean: 
-	rm -f $(OBJECTS)
+bonus: all
+	
+clean:
+	@echo "Cleaning Object file"
+	@rm -f $(OBJECTS)
 
 fclean: clean
+	@echo "Cleaning binary"
 	rm -f $(NAME)
 
 re: fclean all
