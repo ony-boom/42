@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_chartostr.c                                     :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 16:34:14 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/24 16:35:48 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/02/25 15:48:39 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/02/25 15:48:58 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-char	*ft_chartostr(char c)
+long	ft_abs(long n)
 {
-	char	*str;
+	long	nb;
 
-	str = malloc(sizeof(char) * 2);
-	if (!str)
-		return (NULL);
-	str[0] = c;
-	str[1] = '\0';
-	return (str);
+	nb = 1;
+	if (n < 0)
+		nb *= -n;
+	else
+		nb *= n;
+	return (nb);
 }

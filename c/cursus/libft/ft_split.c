@@ -6,89 +6,83 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:29:16 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/24 16:52:31 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:19:18 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count_words(char const *s, char c)
+static int	word_count(const char *str, char c);
+static char	*get_first(char **str, char c);
+static char	*trim_c_start(const char *str, char c);
+static void	free_memory(char **strs, int count);
+
+char	**ft_split(const char *s, char c)
 {
-	size_t	count;
-	size_t	i;
+	int		i;
+	int		len;
+	char	**strs;
+
+	i = 0;
+	len = word_count(s, c) + 1;
+	strs = ft_calloc(len, sizeof(char *));
+	if (!strs)
+		return (NULL);
+	while (i < len - 1)
+	{
+		strs[i] = get_first((char **)&s, c);
+		if (!strs[i])
+		{
+			free_memory(strs, i);
+			return (NULL);
+		}
+		i++;
+	}
+	return (strs);
+}
+
+static void	free_memory(char **strs, int count)
+{
+	while (count >= 0)
+		free(strs[count--]);
+	free(strs);
+}
+
+static int	word_count(const char *str, char c)
+{
+	int	count;
 
 	count = 0;
-	i = 0;
-	while (*(s + i))
+	while (*str)
 	{
-		if (*(s + i) != c)
+		if (*str == c)
 		{
-			count++;
-			while (*(s + i) && *(s + i) != c)
-				i++;
+			str++;
+			continue ;
 		}
-		else if (*(s + i) == c)
-			i++;
+		while (*str && *str != c)
+			str++;
+		count++;
 	}
 	return (count);
 }
 
-static size_t	get_word_len(char const *s, char c)
+static char	*get_first(char **str, char c)
 {
-	size_t	i;
+	int		w_len;
+	char	*trimmed;
 
-	i = 0;
-	while (*(s + i) && *(s + i) != c)
-		i++;
-	return (i);
+	w_len = 0;
+	trimmed = trim_c_start(*str, c);
+	while (trimmed[w_len] && trimmed[w_len] != c)
+		w_len++;
+	*str = trimmed + w_len + 1;
+	return (ft_substr(trimmed, 0, w_len));
 }
 
-static void	free_array(size_t i, char **array)
+static char	*trim_c_start(const char *str, char c)
 {
-	while (i > 0)
-	{
-		i--;
-		free(*(array + i));
-	}
-	free(array);
-}
-
-static char	**split(char const *s, char c, char **array, size_t words_count)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (i < words_count)
-	{
-		while (*(s + j) && *(s + j) == c)
-			j++;
-		*(array + i) = ft_substr(s, j, get_word_len(&*(s + j), c));
-		if (!*(array + i))
-		{
-			free_array(i, array);
-			return (NULL);
-		}
-		while (*(s + j) && *(s + j) != c)
-			j++;
-		i++;
-	}
-	*(array + i) = NULL;
-	return (array);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**array;
-	size_t	words;
-
-	if (!s)
-		return (NULL);
-	words = count_words(s, c);
-	array = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!array)
-		return (NULL);
-	array = split(s, c, array, words);
-	return (array);
+	while (*str && *str == c)
+		str++;
+	return ((char *)(str));
 }
