@@ -6,12 +6,11 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:07:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/26 07:26:54 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/26 07:27:43 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	get_len(long n);
 
