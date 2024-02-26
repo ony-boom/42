@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: username <your@mail.com>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 15:07:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/26 07:27:43 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:41:29 by username         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,29 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-static int	get_len(long n)
+// Don't ever judge this code, it is fast than loop
+// It's ugly I admit it, yet It's fast
+static int	get_len(long x)
 {
-	int	len;
-
-	len = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-	{
-		n *= -1;
-		len++;
-	}
-	while (n > 0)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
+	if (x < 0)
+		return (get_len(-x) + 1);
+	if (x >= 1000000000)
+		return (10);
+	if (x >= 100000000)
+		return (9);
+	if (x >= 10000000)
+		return (8);
+	if (x >= 1000000)
+		return (7);
+	if (x >= 100000)
+		return (6);
+	if (x >= 10000)
+		return (5);
+	if (x >= 1000)
+		return (4);
+	if (x >= 100)
+		return (3);
+	if (x >= 10)
+		return (2);
+	return (1);
 }

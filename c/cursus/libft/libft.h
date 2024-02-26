@@ -6,13 +6,14 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:57:07 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/26 07:19:22 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:11:37 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include "stdlib.h"
+# include <stdlib.h>
+# include <unistd.h>
 
 int				ft_isinrange(int n, int min, int max);
 int				ft_isupper(int c);
@@ -20,6 +21,7 @@ int				ft_islower(int c);
 int				ft_isdigit(int c);
 int				ft_isalpha(int c);
 int				ft_isalnum(int c);
+int				ft_isascii(int c);
 int				ft_isprint(int c);
 int				ft_strlen(const char *str);
 void			*ft_memset(void *s, int c, unsigned int n);
@@ -51,4 +53,10 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
 long			ft_abs(long n);
+char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void			ft_striteri(char *s, void (*f)(unsigned int, char *));
+void			ft_putchar_fd(char c, int fd);
+void			ft_putstr_fd(char *s, int fd);
+void			ft_putendl_fd(char *s, int fd);
+void			ft_putnbr_fd(int n, int fd);
 #endif // LIBFT_H
