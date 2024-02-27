@@ -33,3 +33,8 @@ format: $(SRC)
 	@for file in ./*.c; do \
 		c_formatter_42 "$$file"; \
 	done
+
+challenge: challenge.c
+	@$(CC) $(C_FLAGS) challenge.c $(SRC) -o challenge
+	./challenge
+	@rm -f ./challenge

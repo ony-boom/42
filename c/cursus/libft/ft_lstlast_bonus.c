@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:56:13 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/26 17:04:28 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:56:18 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ t_list	*ft_lstlast(t_list *lst)
 
 	if (!lst)
 		return (NULL);
-	while (lst->next)
+	while (lst)
 	{
 		last = lst;
 		lst = lst->next;
 	}
-	if (lst->next)
-		last = lst->next;
 	return (last);
 }
