@@ -6,13 +6,12 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 08:14:02 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/27 09:05:08 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/02/28 10:22:34 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-const int	g_shift = 13;
+#include <stdio.h>
 
 int	get_base_char_code(char c)
 {
@@ -24,7 +23,7 @@ int	get_base_char_code(char c)
 	return ('a');
 }
 
-char	shift_char(char c)
+char	shift_char(char c, int shift)
 {
 	int		base_char_code;
 	char	shifted;
@@ -32,33 +31,29 @@ char	shift_char(char c)
 	if (!ft_isalpha(c))
 		return (c);
 	base_char_code = get_base_char_code(c);
-	shifted = (c - base_char_code + g_shift) % 26 + base_char_code;
+	shifted = (c - base_char_code + shift) % 26 + base_char_code;
 	return (shifted);
-}
-
-char	map_fn(unsigned int i, char c)
-{
-	(void)i;
-	return (shift_char(c));
-}
-
-char	*solve(char *input)
-{
-	return (ft_strmapi(input, &map_fn));
 }
 
 int	main(void)
 {
-	char	*solved;
+	FILE	*ptr;
+	char	ch;
+	int		shift;
 
-	const char input[] = "Rnpu cebwrpg bs gur 97 Pbzzba Pber pbagnvaf na rapbqrq uvag. Sbe rnpu\n\
-pvepyr, bayl bar cebwrpg cebivqrf gur pbeerpg uvag arrqrq sbe gur\n\
-arkg pvepyr. Guvf punyyratr vf vaqvivqhny, gurer vf bayl n cevmr sbe\n\
-bar fghqrag jvaare cebivqvat nyy qrpbqrq zrffntrf. Nal nqinagntrq\n\
-crbcyr pna cynl, yvxr pheerag be sbezre fgnss, ohg gur cevmr jvyy\n\
-erznva flzobyvp. Gur uvag sbe guvf svefg cebwrpg vf:\n\
-Ynetr pbjf trarebfvgl pbzrf jvgu punegf naq sbhe oybaqr ungf gb qrsl hccre tenivgl ureb";
-	solved = solve((char *)input);
-	ft_putstr_fd(solved, 1);
-	ft_putstr_fd("\n", 1);
+	ptr = fopen("input.txt", "r");
+	shift = 13;
+	if (ptr == NULL)
+	{
+		ft_putstr_fd("Can't read input file\n", 1);
+		return (1);
+	}
+	ch = fgetc(ptr);
+	while (ch != EOF)
+	{
+		ft_putchar_fd(shift_char(ch, shift), 1);
+		ch = fgetc(ptr);
+	}
+	fclose(ptr);
+	return (0);
 }
