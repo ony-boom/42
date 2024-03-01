@@ -6,15 +6,28 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/01 17:28:53 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:19:45 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft.h"
+#include "includes/ft_printf.h"
 
 void print_based_on_type(t_format format, va_list params)
 {
+  if (format == CHAR)
+  {
+    return;
+  }
+
+  if (format == STR)
+  {
+    return;
+  }
+
+  if(format == DECIMAL)
+  {
+    return;
+  }
 }
 
 int ft_printf(const char *str, ...)

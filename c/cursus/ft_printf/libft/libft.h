@@ -6,13 +6,14 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:57:07 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/01 17:08:49 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/01 20:09:15 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_list
 {
