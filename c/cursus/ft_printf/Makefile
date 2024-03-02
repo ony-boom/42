@@ -39,4 +39,10 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+format: $(SRC)
+	@c_formatter_42 *.c 
+	@c_formatter_42 libft/*.c
+	@c_formatter_42 libft/*.h
+	@c_formatter_42 includes/*.h
+
+.PHONY: all clean fclean re format
