@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:06:52 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/02 14:27:58 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/02 13:04:34 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/03 21:26:54 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+void	free_mem(t_printer **registry)
 {
-	int	printed;
+	t_printer	**current;
 
-	printed = 0;
-	while (*s)
-		printed += ft_putchar_fd(*s++, fd);
-	return (printed);
+	if (!registry || !*registry)
+		return ;
+	current = registry;
+	while (*current)
+	{
+		free(*current);
+		++current;
+	}
+	free(registry);
 }

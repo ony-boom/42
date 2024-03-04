@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   str_printer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:06:52 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/02 14:27:58 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/02 14:25:01 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/02 19:32:45 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+static int	printer(va_list params)
 {
-	int	printed;
+	char	*str;
 
-	printed = 0;
-	while (*s)
-		printed += ft_putchar_fd(*s++, fd);
-	return (printed);
+	str = va_arg(params, char *);
+	if (!str || !*str)
+	{
+		if (!str)
+			return (ft_putstr_fd("(null)", 1));
+		return (0);
+	}
+	return (ft_putstr_fd(str, 1));
+}
+
+t_printer	*str_printer(void)
+{
+	return (printer_new(STR, printer));
 }

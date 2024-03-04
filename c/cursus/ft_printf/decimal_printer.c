@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   decimal_printer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:06:52 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/02 14:27:58 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/02 19:59:33 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/03 14:39:46 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+static int	printer(va_list params)
 {
-	int	printed;
+	return (ft_putnbr_fd((va_arg(params, int)), 1));
+}
 
-	printed = 0;
-	while (*s)
-		printed += ft_putchar_fd(*s++, fd);
-	return (printed);
+t_printer	*decimal_printer(void)
+{
+	return (printer_new(DECIMAL, printer));
 }

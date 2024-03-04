@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   hex_upper_printer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:06:52 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/02 14:27:58 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/03 14:31:52 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/03 14:41:08 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+static int	print_upper_hex(va_list params)
 {
-	int	printed;
+	return (hex_base_printf(params, 1));
+}
 
-	printed = 0;
-	while (*s)
-		printed += ft_putchar_fd(*s++, fd);
-	return (printed);
+t_printer	*hex_upper_printer(void)
+{
+	return (printer_new(UPPER_HEX, print_upper_hex));
 }

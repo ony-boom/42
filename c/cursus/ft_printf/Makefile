@@ -1,13 +1,13 @@
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I./includes
+INCLUDES = -I./includes -I./libft
 
 LIBFT_DIR = libft
 SRC_DIR = .
 OBJ_DIR = obj
 
 LIBFT_SRC = $(wildcard $(LIBFT_DIR)/*.c)
-PRINTF_SRC = $(SRC_DIR)/*.c
+PRINTF_SRC = $(wildcard $(SRC_DIR)/*.c)
 
 LIBFT_OBJ = $(LIBFT_SRC:$(LIBFT_DIR)/%.c=$(OBJ_DIR)/%.o)
 PRINTF_OBJ = $(PRINTF_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -38,6 +38,12 @@ fclean: clean
 	@echo "$(NAME) has been removed."
 
 re: fclean all
+
+my_test:
+	@echo "Running personnal test:\n"
+	@$(CC) $(CFLAGS) -g *.c libft/*.c
+	@valgrind --leak-check=full ./a.out
+	@rm -f ./a.out
 
 format: $(SRC)
 	@c_formatter_42 *.c 

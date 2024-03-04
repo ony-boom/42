@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   unsignedint_printer.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 14:06:52 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/02 14:27:58 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/03 13:34:37 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/03 14:38:29 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+static int	printer(va_list params)
 {
-	int	printed;
+	unsigned int	n;
 
-	printed = 0;
-	while (*s)
-		printed += ft_putchar_fd(*s++, fd);
-	return (printed);
+	n = ft_abs(va_arg(params, int));
+	return (ft_putnbr_fd(n, 1));
+}
+
+t_printer	*unsignedint_printer(void)
+{
+	return (printer_new(UNSIGNED_INT, printer));
 }
