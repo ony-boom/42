@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I./includes -I./libft
 
 LIBFT_DIR = libft
-SRC_DIR = .
+SRC_DIR = ./src
 OBJ_DIR = obj
 
 LIBFT_SRC = $(wildcard $(LIBFT_DIR)/*.c)
@@ -41,12 +41,12 @@ re: fclean all
 
 my_test:
 	@echo "Running personnal test:\n"
-	@$(CC) $(CFLAGS) -g *.c libft/*.c
-	@valgrind --leak-check=full ./a.out
+	@$(CC) $(CFLAGS) -g ./main.c $(SRC_DIR)/*.c $(LIBFT_DIR)/*.c
+	@./a.out
 	@rm -f ./a.out
 
 format: $(SRC)
-	@c_formatter_42 *.c 
+	@c_formatter_42 src/*.c 
 	@c_formatter_42 libft/*.c
 	@c_formatter_42 libft/*.h
 	@c_formatter_42 includes/*.h

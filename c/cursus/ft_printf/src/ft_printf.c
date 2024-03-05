@@ -6,33 +6,24 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/04 06:59:11 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:25:42 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	print_based_on_type(t_format format, va_list params, t_printer **printers)
+int	print_based_on_type(char *str, va_list params, t_printer **printers)
 {
 	t_printer	*printer;
+	t_format	format;
 
+	format = *str;
 	printer = get_printer_at_format(printers, format);
 	if (!printer || !printer->fn)
 		return (ft_putchar_fd(va_arg(params, int), 1));
 	return (printer->fn(params));
 }
 
-/* int	print_based_on_type(char *str, va_list params, t_printer **printers)
-{
-	t_printer	*printer;
-	t_format format;
-
-	format = *str;
-	printer = get_printer_at_format(printers, format);
-	if (!printer || !printer->fn)
-		return (ft_putchar_fd(va_arg(params, int), 1));
-	return (printer->fn(params, str++));
-} */
 int	ft_printf(const char *str, ...)
 {
 	va_list		params;
@@ -48,7 +39,8 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str == format_specifier)
 		{
-			printed_char += print_based_on_type(*(++str), params, printers);
+			printed_char += print_based_on_type((char *)(++str), params,
+					printers);
 			str++;
 			continue ;
 		}

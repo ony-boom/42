@@ -6,11 +6,11 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 10:12:13 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/03 15:10:35 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:26:29 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 t_printer	*printer_new(t_format specifier, t_print_fn fn)
 {

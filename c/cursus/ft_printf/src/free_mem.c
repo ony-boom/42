@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   char_printer.c                                     :+:      :+:    :+:   */
+/*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 10:21:31 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/02 14:29:53 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/02 13:04:34 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/05 19:25:34 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-static int	printer(va_list params)
+void	free_mem(t_printer **registry)
 {
-	return (ft_putchar_fd(va_arg(params, int), 1));
-}
+	t_printer	**current;
 
-t_printer	*char_printer(void)
-{
-	return (printer_new(CHAR, printer));
+	if (!registry || !*registry)
+		return ;
+	current = registry;
+	while (*current)
+	{
+		free(*current);
+		++current;
+	}
+	free(registry);
 }

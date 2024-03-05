@@ -6,38 +6,49 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 13:38:05 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/03 15:03:23 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:25:49 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-static void	print_hex(unsigned long n, char *base, int *printed)
+int	get_hex(int n, int use_upper)
 {
-	if ((int)n >= ft_strlen(base))
-		print_hex(n / ft_strlen(base), base, printed);
-	*printed = ft_putchar_fd(base[n % ft_strlen(base)], 1);
+	char	c;
+
+	if (n < 10)
+		return ('0' + n);
+	else
+	{
+		c = 'a';
+		if (use_upper)
+			c = 'A';
+		return (c + n - 10);
+	}
 }
 
-int	hex_base_printf(va_list params, int uppper)
+static int	print_hex(unsigned int n, int use_upper)
 {
-	long		n;
-	int			printed;
-	char		*base16;
-	const char	base16_upper[] = "012345678ABCDEF";
+	int							printed;
+	static const unsigned int	base = 16;
 
-	base16 = BASE_16;
-	if (uppper)
-		base16 = (char *)base16_upper;
 	printed = 0;
-	n = va_arg(params, int);
-	if (n < 0)
+	if (n >= base)
 	{
-		n = ft_abs(n);
-		printed += ft_putchar_fd('-', 1);
+		printed += print_hex((n / base), use_upper);
+		printed += print_hex((n % base), use_upper);
 	}
-	print_hex(n, base16, &printed);
+	else
+		printed += ft_putchar_fd(get_hex(n, use_upper), 1);
 	return (printed);
+}
+
+int	hex_base_printf(va_list params, int use_upper)
+{
+	unsigned int	n;
+
+	n = va_arg(params, unsigned int);
+	return (print_hex(n, use_upper));
 }
 
 static int	print_lower_hex(va_list params)

@@ -6,34 +6,34 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 14:49:48 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/04 06:57:34 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:26:22 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-char	hex_digit(int v)
-{
-	if (v >= 0 && v < 10)
-		return ('0' + v);
-	return ('a' + v - 10);
-}
-
-static int	print_ptr(void *p0)
+static int	print_ptr(void *pointer_like)
 {
 	int			shift;
 	int			printed;
-	uintptr_t	p;
+	uintptr_t	ptr;
 
 	printed = 0;
-	p = (uintptr_t)p0;
+	ptr = (uintptr_t)pointer_like;
+	if (!ptr)
+	{
+		printed += ft_putstr_fd("(nil)", 1);
+		return (printed);
+	}
 	printed += ft_putstr_fd("0x", 1);
-	shift = (sizeof(p) << 3) - 4;
-	while (shift >= 0 && ((p >> shift) & 0xf) == 0)
+	shift = (sizeof(ptr) << 3) - 4;
+	// this next while loop is used to only show
+	// the most non-zero important nibbles
+	while (shift >= 0 && ((ptr >> shift) & 0xf) == 0)
 		shift -= 4;
 	while (shift >= 0)
 	{
-		printed += ft_putchar_fd(hex_digit((p >> shift) & 0xf), 1);
+		printed += ft_putchar_fd(get_hex((ptr >> shift) & 0xf, 0), 1);
 		shift -= 4;
 	}
 	return (printed);

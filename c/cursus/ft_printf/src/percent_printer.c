@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mem.c                                         :+:      :+:    :+:   */
+/*   percent_printer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 13:04:34 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/03 21:26:54 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/03 14:39:21 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/05 19:26:13 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void	free_mem(t_printer **registry)
+static int	printer(va_list params)
 {
-	t_printer	**current;
+	(void)params;
+	return (ft_putchar_fd('%', 1));
+}
 
-	if (!registry || !*registry)
-		return ;
-	current = registry;
-	while (*current)
-	{
-		free(*current);
-		++current;
-	}
-	free(registry);
+t_printer	*percent_printer(void)
+{
+	return (printer_new(PERCENT, printer));
 }

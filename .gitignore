@@ -1,4 +1,5 @@
 .clang-format
-*/**/obj/
+*/**/obj
+*/**/test
 */**/*.a
 */**/.vscode
