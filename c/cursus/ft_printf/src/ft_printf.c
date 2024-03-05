@@ -6,48 +6,57 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 19:25:42 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:09:39 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	print_based_on_type(char *str, va_list params, t_printer **printers)
+const t_format_specifier	*get_specifier_list(void)
 {
-	t_printer	*printer;
-	t_format	format;
+	const static t_format_specifier	specifier_list[SPECIFER_LIST_SIZE] = {CHAR,
+			INTEGER, STR, DECIMAL, POINTER, UNSIGNED_INT, HEX, UPPER_HEX,
+			PERCENT};
 
-	format = *str;
-	printer = get_printer_at_format(printers, format);
-	if (!printer || !printer->fn)
-		return (ft_putchar_fd(va_arg(params, int), 1));
-	return (printer->fn(params));
+	return (specifier_list);
 }
 
-int	ft_printf(const char *str, ...)
+// TODO: a lot of to do down there 👇️👇️
+int print_formatted(char *str, va_list params)
 {
-	va_list		params;
-	int			printed_char;
-	char		format_specifier;
-	t_printer	**printers;
+	int printed;
+	t_format *format;
+	char *formatted_str;
+	t_str_builder str_builder;
 
-	printed_char = 0;
-	format_specifier = '%';
-	va_start(params, str);
-	printers = init_printers();
-	while (*str)
+	printed = 0;
+	format = get_format(str);
+
+	free_format(format);
+	return 0;
+}
+
+int	ft_printf(const char *base_str, ...)
+{
+	int		printed;
+	va_list	params;
+	int		is_after_format_sign;
+
+	printed = 0;
+	va_start(params, base_str);
+	is_after_format_sign = 0;
+	while (*base_str)
 	{
-		if (*str == format_specifier)
+		if (*base_str == '%' && !is_after_format_sign)
 		{
-			printed_char += print_based_on_type((char *)(++str), params,
-					printers);
-			str++;
+			is_after_format_sign = 1;
+			printed += print_formatted((char *)base_str++, params);
 			continue ;
 		}
-		printed_char++;
-		ft_putchar_fd(*str++, 1);
+		printed += ft_putchar_fd(*base_str, 1);
+		is_after_format_sign = 0;
+		base_str++;
 	}
 	va_end(params);
-	free_mem(printers);
-	return (printed_char);
+	return (printed);
 }

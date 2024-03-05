@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 13:38:05 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 19:25:49 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:02:39 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,4 @@ int	hex_base_printf(va_list params, int use_upper)
 
 	n = va_arg(params, unsigned int);
 	return (print_hex(n, use_upper));
-}
-
-static int	print_lower_hex(va_list params)
-{
-	return (hex_base_printf(params, 0));
-}
-
-t_printer	*hex_lower_printer(void)
-{
-	return (printer_new(HEX, print_lower_hex));
 }

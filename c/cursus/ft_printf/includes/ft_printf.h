@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:15:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 19:41:29 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:06:52 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,47 +28,36 @@ typedef enum e_format
 	HEX = 'x',
 	UPPER_HEX = 'X',
 	PERCENT = '%'
-}				t_format;
+}							t_format_specifier;
 
-# define PRINTER_LIST_SIZE 10
-
-typedef int		(*t_print_fn)(va_list);
-
-typedef struct s_printer
+typedef struct format_modifier
 {
-	t_format	format_specifier;
-	t_print_fn	fn;
-}				t_printer;
+	unsigned int			left_pad;
+	unsigned int			right_pad;
+	unsigned int			zero_pad;
+}							t_format_modifier;
 
-typedef struct format_config {
+typedef struct format
+{
+	t_format_modifier		*modifier;
+	t_format_specifier		specifier;
+}							t_format;
+
+
+typedef struct str_builder
+{
 	t_format format;
-	unsigned int min_width;
-	unsigned int left_pad;
-	unsigned int right_pad;
-} t_format_config;
+	char *(*format_handler)(va_list params);
+} t_str_builder;
 
-t_printer		*printer_new(t_format specifier, t_print_fn printer_fn);
 
-t_printer		**init_printers(void);
-void			register_printer(t_printer **registry, t_printer *printer);
+# define SPECIFER_LIST_SIZE 10
 
-t_printer		*get_printer_at_format(t_printer **printers, t_format format);
-
-void			free_mem(t_printer **registry);
-
-int				ft_printf(const char *format, ...);
-
-t_printer		*int_printer(void);
-t_printer		*char_printer(void);
-t_printer		*str_printer(void);
-t_printer		*decimal_printer(void);
-t_printer		*unsignedint_printer(void);
-
-int	get_hex(int n, int use_upper);
-int				hex_base_printf(va_list params, int uppper);
-t_printer		*hex_lower_printer(void);
-t_printer		*hex_upper_printer(void);
-t_printer		*percent_printer(void);
-t_printer		*pointer_printer(void);
+int							ft_printf(const char *str, ...);
+int							get_hex(int n, int use_upper);
+t_format					*get_format(const char *str);
+t_format_modifier	*get_modifier(const char *str);
+void free_format(t_format *format);
+const t_format_specifier	*get_specifier_list(void);
 
 #endif // FT_PRINTF_H
