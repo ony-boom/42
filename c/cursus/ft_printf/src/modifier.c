@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 22:43:41 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 22:44:59 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:16:49 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	*get_pad(const char *str)
 		substr_end++;
 		str++;
 	}
-	pad = ft_atoi(ft_substr(str, 0, substr_end));
+	pad = ft_atoi(ft_substr(str - substr_end, 0, substr_end));
 	pad_conf[0] = pad;
 	pad_conf[1] = 0;
 	if (is_right)
@@ -53,7 +53,7 @@ int	get_zero_pad(const char *str)
 		substr_end++;
 		str++;
 	}
-	return (ft_atoi(ft_substr(str, 0, substr_end)));
+	return (ft_atoi(ft_substr(str - substr_end, 0, substr_end)));
 }
 
 t_format_modifier	*get_modifier(const char *str)
