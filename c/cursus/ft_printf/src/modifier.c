@@ -49,8 +49,7 @@ int	get_zero_pad(const char *str, int *modifier_len)
 	pad = 0;
 	substr_end = 0;
 	if (*str != '0')
-		return 0;
-
+		return (0);
 	str++;
 	while (ft_isdigit(*str))
 	{

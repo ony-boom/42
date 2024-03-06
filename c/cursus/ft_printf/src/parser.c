@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:05:38 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/06 07:12:27 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:18:13 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ t_format	*get_format(const char *str, int *format_len)
 	format = malloc(sizeof(t_format));
 	if (!format)
 		return (NULL);
-	format->specifier = get_specifier(*str);           
-		// at this point `str` is something like 👉️ s|d|x|i
-		+ the rest of the string
+	format->specifier = get_specifier(*str);
+	// at this point `str` is something like 👉️ s|d|x|i
+	// + the rest of the string
 	format->modifier = get_modifier(str++, format_len);
-		// at this point `str` like the above but without the specifier
+	// at this point `str` like the above but without the specifier
 	*format_len += 1;
 	return (format);
 }
