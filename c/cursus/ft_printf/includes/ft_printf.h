@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:15:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 23:06:52 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/06 07:02:06 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,19 @@ typedef struct format
 	t_format_specifier		specifier;
 }							t_format;
 
-
 typedef struct str_builder
 {
-	t_format format;
-	char *(*format_handler)(va_list params);
-} t_str_builder;
-
+	t_format				format;
+	char					*(*format_handler)(va_list params);
+}							t_str_builder;
 
 # define SPECIFER_LIST_SIZE 10
 
 int							ft_printf(const char *str, ...);
 int							get_hex(int n, int use_upper);
-t_format					*get_format(const char *str);
-t_format_modifier	*get_modifier(const char *str);
-void free_format(t_format *format);
+t_format					*get_format(const char *str, int *format_len);
+t_format_modifier			*get_modifier(const char *str, int *modifier_len);
+void						free_format(t_format *format);
 const t_format_specifier	*get_specifier_list(void);
 
 #endif // FT_PRINTF_H
