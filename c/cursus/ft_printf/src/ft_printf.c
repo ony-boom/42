@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/06 06:59:36 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:53:21 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ const t_format_specifier	*get_specifier_list(void)
 // TODO: a lot of to do down there 👇️👇️
 int	print_formatted(char *str, int *format_len, va_list params)
 {
-	int				printed;
-	t_format		*format;
-	char			*formatted_str;
-	t_str_builder	str_builder;
+	int			printed;
+	t_format	*format;
+	char		*formatted_str;
 
 	printed = 0;
 	format = get_format(str, format_len);
