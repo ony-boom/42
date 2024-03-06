@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 23:09:39 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/06 06:59:36 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@ const t_format_specifier	*get_specifier_list(void)
 }
 
 // TODO: a lot of to do down there 👇️👇️
-int print_formatted(char *str, va_list params)
+int	print_formatted(char *str, int *format_len, va_list params)
 {
-	int printed;
-	t_format *format;
-	char *formatted_str;
-	t_str_builder str_builder;
+	int				printed;
+	t_format		*format;
+	char			*formatted_str;
+	t_str_builder	str_builder;
 
 	printed = 0;
-	format = get_format(str);
-
+	format = get_format(str, format_len);
 	free_format(format);
-	return 0;
+	return (0);
 }
 
 int	ft_printf(const char *base_str, ...)
 {
 	int		printed;
 	va_list	params;
+	int		format_len;
 	int		is_after_format_sign;
 
 	printed = 0;
@@ -50,7 +50,8 @@ int	ft_printf(const char *base_str, ...)
 		if (*base_str == '%' && !is_after_format_sign)
 		{
 			is_after_format_sign = 1;
-			printed += print_formatted((char *)base_str++, params);
+			printed += print_formatted((char *)base_str++, &format_len, params);
+			base_str += format_len;
 			continue ;
 		}
 		printed += ft_putchar_fd(*base_str, 1);
