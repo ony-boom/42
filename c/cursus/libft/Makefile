@@ -70,7 +70,7 @@ $(NAME): OBJECTS
 	@ar -crs $(NAME) $(OBJECTS)
 
 bonus: all
-	
+
 clean:
 	@echo "Cleaning Object file"
 	@rm -f $(OBJECTS)
@@ -91,3 +91,5 @@ challenge: challenge.c
 	@$(CC) $(C_FLAGS) challenge.c $(SRC) -o challenge
 	./challenge
 	@rm -f ./challenge
+
+.PHONY: clean re fclean format
