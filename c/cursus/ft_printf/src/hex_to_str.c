@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hex_printer.c                                      :+:      :+:    :+:   */
+/*   hex_to_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 13:38:05 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 21:02:39 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/09 09:21:27 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,49 @@ int	get_hex(int n, int use_upper)
 	}
 }
 
-static int	print_hex(unsigned int n, int use_upper)
+int	get_hex_len(unsigned int n)
 {
-	int							printed;
-	static const unsigned int	base = 16;
+	unsigned int	i;
+	int				len;
+	int				shift;
+	int				digit;
 
-	printed = 0;
-	if (n >= base)
+	i = 0;
+	len = 0;
+	shift = (sizeof(n) << 3) - 4;
+	while (i < sizeof(n) * 2)
 	{
-		printed += print_hex((n / base), use_upper);
-		printed += print_hex((n % base), use_upper);
+		digit = (n >> shift) & 0xf;
+		if (digit != 0 || len > 0)
+			len++;
+		shift -= 4;
+		++i;
 	}
-	else
-		printed += ft_putchar_fd(get_hex(n, use_upper), 1);
-	return (printed);
+	return (len);
 }
 
-int	hex_base_printf(va_list params, int use_upper)
+void	set_hexstr(unsigned int n, int use_upper, char *dst)
 {
-	unsigned int	n;
+	static const unsigned int	base = 16;
 
-	n = va_arg(params, unsigned int);
-	return (print_hex(n, use_upper));
+	if (n >= base)
+	{
+		set_hexstr((n / base), use_upper, dst);
+		set_hexstr((n % base), use_upper, dst);
+	}
+	else
+		*dst++ = ft_putchar_fd(get_hex(n, use_upper), 1);
+}
+
+char	*hex_to_str(unsigned int n, int use_upper)
+{
+	int		len;
+	char	*str;
+
+	len = get_hex_len(n);
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	set_hexstr(n, use_upper, str);
+	return (str);
 }

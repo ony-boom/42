@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unsignedint_printer.c                              :+:      :+:    :+:   */
+/*   ft_char_repeat.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/03 13:34:37 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 21:04:21 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/09 22:33:11 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/09 22:36:23 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-static int	print_unsigned(unsigned int n)
+char	*ft_char_repeat(char c, int reapeat)
 {
-	int	printed;
+	char	*str;
 
-	printed = 0;
-	if (n >= 10)
+	str = ft_calloc(reapeat + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	while (reapeat)
 	{
-		printed += print_unsigned((n / 10));
-		printed += print_unsigned((n % 10));
+		*str++ = c;
+		reapeat--;
 	}
-	else
-		printed += ft_putchar_fd(n + '0', 1);
-	return (printed);
-}
-
-static int	printer(va_list params)
-{
-	unsigned int	n;
-
-	n = va_arg(params, unsigned int);
-	return (print_unsigned(n));
+	return (str);
 }
