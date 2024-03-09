@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:57:07 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/03 14:22:19 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/09 22:34:45 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char				*ft_substr(char const *s, unsigned int start, int len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
+
+int					get_int_len(long x);
 char				*ft_itoa(int n);
 long				ft_abs(long n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -75,4 +77,7 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+
+char				*ft_char_repeat(char c, int repeat);
+
 #endif // LIBFT_H

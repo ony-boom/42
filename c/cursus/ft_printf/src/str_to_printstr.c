@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   percent_printer.c                                  :+:      :+:    :+:   */
+/*   str_to_printstr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/03 14:39:21 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 21:03:08 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/02 14:25:01 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/09 08:51:34 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int	printer(va_list params)
+char	*str_to_printfstr(va_list params)
 {
-	(void)params;
-	return (ft_putchar_fd('%', 1));
+	char	*str;
+
+	str = va_arg(params, char *);
+	if (!str || !*str)
+	{
+		if (!str)
+			return ("null");
+		return (0);
+	}
+	return (str);
 }
