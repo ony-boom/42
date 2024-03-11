@@ -56,7 +56,7 @@ static char	*apply_modifier(t_format format, char *base_str)
 
 	if (!base_str)
 		return (NULL);
-	modified_str = base_str;
+	modified_str = ft_strdup(base_str);
 	base_str_len = ft_strlen(base_str);
 	modified_str_len = base_str_len + 1;
 	if (format.modifier.pad.len)
@@ -67,7 +67,7 @@ static char	*apply_modifier(t_format format, char *base_str)
 char	*new_str_builder(t_format format, va_list params)
 {
 	char	*str;
-	char *result;
+	char	*result;
 
 	if (format.specifier == DECIMAL || format.specifier == INTEGER)
 		str = ft_itoa(va_arg(params, int));
@@ -83,6 +83,6 @@ char	*new_str_builder(t_format format, va_list params)
 	else
 		str = ft_strdup(va_arg(params, char *));
 	result = (apply_modifier(format, str));
-	// free(str);
+	free(str);
 	return (result);
 }
