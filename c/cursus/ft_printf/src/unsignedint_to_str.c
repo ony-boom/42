@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 13:34:37 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/09 21:49:53 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:35:05 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void	set_str(unsigned int n, char *dst)
 	if (n >= 10)
 	{
 		set_str((n / 10), dst);
+		dst += ft_strlen(dst);
 		set_str((n % 10), dst);
 	}
 	else
-		*dst++ = n + '0';
+		*dst = n + '0';
 }
 
 char	*unsigned_to_str(unsigned int n)
