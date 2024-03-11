@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 14:22:16 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/11 07:14:24 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:22:24 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(void)
 {
 	char *str = "%x\n";
 	
-	// TODO: fix hex str builder
 	ft_printf(str, 0xfff);
 	// int o_printed = printf(str, 0xfff);
 
