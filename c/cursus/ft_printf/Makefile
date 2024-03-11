@@ -42,8 +42,6 @@ re: fclean all
 my_test:
 	@echo "Running personnal test:\n"
 	@$(CC) $(CFLAGS) -g ./main.c $(SRC_DIR)/*.c $(LIBFT_DIR)/*.c
-	@./a.out
-	@rm -f ./a.out
 
 format: $(SRC)
 	@c_formatter_42 src/*.c 

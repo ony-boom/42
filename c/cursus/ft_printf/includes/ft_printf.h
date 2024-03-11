@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:15:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/09 22:12:06 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:26:01 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef enum e_format
 	PERCENT = '%'
 }							t_format_specifier;
 
+# define NOT_FOUND_SPECIFIER '!'
+
 typedef struct s_pad_conf
 {
 	int						len;
@@ -47,8 +49,6 @@ typedef struct format
 	t_format_modifier		modifier;
 	t_format_specifier		specifier;
 }							t_format;
-
-typedef char				*(*t_format_handler)(va_list params);
 
 # define SPECIFER_LIST_SIZE 10
 
