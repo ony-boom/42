@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:15:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/10 15:26:01 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/12 07:40:19 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char						*unsigned_to_str(unsigned int n);
 char						*pointer_to_str(void *pointer_like);
 char						*str_to_printfstr(va_list params);
 
+char *char_to_str(char c);
 char						*new_str_builder(t_format format, va_list params);
 const t_format_specifier	*get_specifier_list(void);
 

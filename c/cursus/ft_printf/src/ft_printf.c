@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/11 16:45:54 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/12 06:44:08 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,18 @@
 
 const t_format_specifier	*get_specifier_list(void)
 {
-	static const t_format_specifier	specifier_list[SPECIFER_LIST_SIZE] = {CHAR,
-			INTEGER, STR, DECIMAL, POINTER, UNSIGNED_INT, HEX, UPPER_HEX,
-			PERCENT, 0};
+	static const t_format_specifier	specifier_list[SPECIFER_LIST_SIZE] = {
+		CHAR,
+		INTEGER,
+		STR,
+		DECIMAL,
+		POINTER,
+		UNSIGNED_INT,
+		HEX,
+		UPPER_HEX,
+		PERCENT,
+		0
+	};
 
 	return (specifier_list);
 }
@@ -50,7 +59,7 @@ int	ft_printf(const char *str, ...)
 		{
 			printed_char += print_formatted((char *)(++str), &format_len,
 					params);
-			str += format_len + 1;
+			str += format_len;
 			continue ;
 		}
 		printed_char++;
