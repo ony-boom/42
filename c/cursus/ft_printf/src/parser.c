@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:05:38 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/11 17:18:09 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/12 08:12:33 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,11 @@ t_format	get_format(const char *str, int *format_len)
 	t_format			format;
 	t_format_specifier	specifier;
 
-	*format_len = 0;
-	specifier = get_specifier(*str);
+	*format_len = 1;
 	init_format(&format);
+	specifier = get_specifier(*str);
 	if (specifier != NOT_FOUND_SPECIFIER)
 	{
-		*format_len += 1;
 		format.specifier = specifier;
 		return (format);
 	}

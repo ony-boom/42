@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   char_to_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 14:22:16 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/12 08:11:56 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/12 07:39:15 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/12 07:41:03 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
+#include "../includes/ft_printf.h"
 
-int	main(void)
+char *char_to_str(char c)
 {
-	char *str = "%c";
-	
-	ft_printf(str, '0');
-	// printf(str, '0');
+  char *str;
+
+  str = ft_calloc(2, sizeof(char));
+  if (!str)
+    return NULL;
+
+  str[0] = c;
+  str[1] = '\0';
+
+  return str;
 }

@@ -1,17 +1,16 @@
-/* ***j********************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   str_builder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 14:17:47 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/09 22:17:26 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/12 06:41:55 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/12 08:21:47 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 int	is_int_specifier(t_format_specifier specifier)
 {
@@ -50,18 +49,16 @@ static char	*apply_pad(t_format format, char *str, int str_len)
 
 static char	*apply_modifier(t_format format, char *base_str)
 {
-	char	*modified_str;
 	int		base_str_len;
 	int		modified_str_len;
 
 	if (!base_str)
 		return (NULL);
-	modified_str = ft_strdup(base_str);
 	base_str_len = ft_strlen(base_str);
 	modified_str_len = base_str_len + 1;
 	if (format.modifier.pad.len)
-		modified_str = apply_pad(format, modified_str, modified_str_len);
-	return (modified_str);
+		return apply_pad(format, base_str, modified_str_len);
+	return ft_strdup(base_str);
 }
 
 char	*new_str_builder(t_format format, va_list params)
@@ -72,7 +69,7 @@ char	*new_str_builder(t_format format, va_list params)
 	if (format.specifier == DECIMAL || format.specifier == INTEGER)
 		str = ft_itoa(va_arg(params, int));
 	else if (format.specifier == CHAR || format.specifier == PERCENT)
-		str = ft_strdup((char[2]){va_arg(params, int), '\0'});
+		str = char_to_str(va_arg(params, int));
 	else if (format.specifier == HEX || format.specifier == UPPER_HEX)
 		str = hex_to_str(va_arg(params, unsigned int),
 				format.specifier == UPPER_HEX);
