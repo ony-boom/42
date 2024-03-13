@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I./includes -I./libft
 
 LIBFT_DIR = libft
-SRC_DIR = ./src
+SRC_DIR = src
 OBJ_DIR = obj
 
 LIBFT_SRC = libft/ft_lstclear_bonus.c libft/ft_lstsize_bonus.c\
@@ -34,9 +34,10 @@ LIBFT_SRC = libft/ft_lstclear_bonus.c libft/ft_lstsize_bonus.c\
 						libft/ft_strlen.c libft/ft_memchr.c\
 						libft/ft_calloc.c libft/ft_memmove.c
 
-PRINTF_SRC = src/ft_printf.c src/hex_to_str.c\
-						 src/parser.c src/pointer_to_str.c\
-						 src/str_builder.c src/str_to_printstr.c src/unsignedint_to_str.c
+PRINTF_SRC = src/char_to_str.c src/str_builder.c\
+						 src/ft_printf.c src/parser.c\
+						 src/pointer_to_str.c src/unsignedint_to_str.c\
+						 src/hex_to_str.c src/str_to_printstr.c
 
 LIBFT_OBJ = $(LIBFT_SRC:$(LIBFT_DIR)/%.c=$(OBJ_DIR)/%.o)
 PRINTF_OBJ = $(PRINTF_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
