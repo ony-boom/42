@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:57:07 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/09 22:34:45 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/13 07:19:24 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,4 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-
-char				*ft_char_repeat(char c, int repeat);
-
 #endif // LIBFT_H
