@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/12 06:44:08 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/15 07:00:23 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	print_formatted(char *str, int *format_len, va_list params)
 	printed_char = 0;
 	format = get_format(str, format_len);
 	formatted_str = new_str_builder(format, params);
+    // TODO: may be here, have a function called
+    //  `ft_put_n_str_fd so then we can any way print everything`
 	printed_char = ft_putstr_fd(formatted_str, 1);
 	free(formatted_str);
 	return (printed_char);

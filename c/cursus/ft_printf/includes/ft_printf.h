@@ -66,7 +66,7 @@ char						*unsigned_to_str(unsigned int n);
 char						*pointer_to_str(void *pointer_like);
 char						*str_to_printfstr(va_list params);
 
-char *char_to_str(char c);
+char						*char_to_str(char c);
 char						*new_str_builder(t_format format, va_list params);
 const t_format_specifier	*get_specifier_list(void);
 

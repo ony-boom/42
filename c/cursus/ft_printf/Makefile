@@ -62,6 +62,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@rm -rf $(OBJ_DIR)
+	@rm -rf a.out
 	@echo "Object files have been removed."
 
 fclean: clean
