@@ -40,9 +40,10 @@ int	print_formatted(char *str, int *format_len, va_list params)
 	printed_char = 0;
 	format = get_format(str, format_len);
 	formatted_str = new_str_builder(format, params);
-    // TODO: may be here, have a function called
-    //  `ft_put_n_str_fd so then we can any way print everything`
-	printed_char = ft_putstr_fd(formatted_str, 1);
+    if (!formatted_str || !*formatted_str)
+        printed_char += ft_putchar_fd(0, 1);
+    else
+	    printed_char += ft_putstr_fd(formatted_str, 1);
 	free(formatted_str);
 	return (printed_char);
 }
