@@ -6,12 +6,11 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 13:38:05 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/11 17:36:07 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 11:01:50 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 int	get_hex(int n, int use_upper)
 {
@@ -28,7 +27,7 @@ int	get_hex(int n, int use_upper)
 	}
 }
 
-int	get_hex_len(unsigned int n)
+int	get_hex_len(unsigned long n)
 {
 	unsigned int	i;
 	int				len;
@@ -61,7 +60,7 @@ void	set_hexstr(unsigned int n, int use_upper, char *dst)
 		*dst = get_hex(n, use_upper);
 }
 
-char	*hex_to_str(unsigned int n, int use_upper)
+char	*hex_to_str(unsigned long n, int use_upper)
 {
 	int		len;
 	char	*str;

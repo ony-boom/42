@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 06:41:55 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/13 07:28:18 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 10:57:14 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*new_str_builder(t_format format, va_list params)
 	else if (format.specifier == UNSIGNED_INT)
 		str = unsigned_to_str(va_arg(params, unsigned int));
 	else
-		str = ft_strdup(va_arg(params, char *));
+		str = str_to_printfstr(va_arg(params, char *));
 	result = (apply_modifier(format, str));
 	free(str);
 	return (result);

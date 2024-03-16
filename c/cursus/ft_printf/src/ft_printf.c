@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/15 07:00:23 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 10:52:07 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	print_formatted(char *str, int *format_len, va_list params)
 	printed_char = 0;
 	format = get_format(str, format_len);
 	formatted_str = new_str_builder(format, params);
-    if (!formatted_str || !*formatted_str)
+    if (!*formatted_str && format.specifier == CHAR)
         printed_char += ft_putchar_fd(0, 1);
     else
 	    printed_char += ft_putstr_fd(formatted_str, 1);
