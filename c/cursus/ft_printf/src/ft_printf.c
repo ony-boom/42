@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/16 10:52:07 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:59:17 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,9 @@
 
 const t_format_specifier	*get_specifier_list(void)
 {
-	static const t_format_specifier	specifier_list[SPECIFER_LIST_SIZE] = {
-		CHAR,
-		INTEGER,
-		STR,
-		DECIMAL,
-		POINTER,
-		UNSIGNED_INT,
-		HEX,
-		UPPER_HEX,
-		PERCENT,
-		0
-	};
+	static const t_format_specifier	specifier_list[SPECIFER_LIST_SIZE] = {CHAR,
+			INTEGER, STR, DECIMAL, POINTER, UNSIGNED_INT, HEX, UPPER_HEX,
+			PERCENT, 0};
 
 	return (specifier_list);
 }
@@ -40,10 +31,10 @@ int	print_formatted(char *str, int *format_len, va_list params)
 	printed_char = 0;
 	format = get_format(str, format_len);
 	formatted_str = new_str_builder(format, params);
-    if (!*formatted_str && format.specifier == CHAR)
-        printed_char += ft_putchar_fd(0, 1);
-    else
-	    printed_char += ft_putstr_fd(formatted_str, 1);
+	if (!*formatted_str && format.specifier == CHAR)
+		printed_char += ft_putchar_fd(0, 1);
+	else
+		printed_char += ft_putstr_fd(formatted_str, 1);
 	free(formatted_str);
 	return (printed_char);
 }

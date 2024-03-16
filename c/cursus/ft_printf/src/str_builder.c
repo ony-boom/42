@@ -6,11 +6,12 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 06:41:55 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/16 10:57:14 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:10:40 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int	is_int_specifier(t_format_specifier specifier)
@@ -19,42 +20,42 @@ int	is_int_specifier(t_format_specifier specifier)
 		|| specifier == INTEGER);
 }
 
-static char *pad(t_format format, char *str, int diff, int str_len)
+static char	*pad(t_format format, char *str, int diff, int str_len)
 {
-    int		size;
-    char *padded;
+	int		size;
+	char	*padded;
 
-    size = str_len + diff + 1;
-    padded = ft_calloc(size, sizeof(char));
-    if (!padded)
-        return (NULL);
-    if (format.modifier.pad.is_right)
-    {
-        ft_memcpy(padded, str, str_len);
-        ft_memset(padded + str_len - 1, ' ', diff);
-        return (padded);
-    }
-    if (format.modifier.pad.with_zero && is_int_specifier(format.specifier))
-        ft_memset(padded, '0', diff);
-    else
-        ft_memset(padded, ' ', diff);
-    ft_strlcat(padded, str, size);
-    return (padded);
+	size = str_len + diff + 1;
+	padded = ft_calloc(size, sizeof(char));
+	if (!padded)
+		return (NULL);
+	if (format.modifier.pad.is_right)
+	{
+		ft_strlcpy(padded, str, str_len);
+		ft_memset(padded + str_len - 1, ' ', diff);
+		return (padded);
+	}
+	if (format.modifier.pad.with_zero && is_int_specifier(format.specifier))
+		ft_memset(padded, '0', diff);
+	else
+		ft_memset(padded, ' ', diff);
+	ft_strlcat(padded, str, size);
+	return (padded);
 }
 
 static char	*apply_pad(t_format format, char *str, int str_len)
 {
 	int		diff;
-    char *base_str;
+	char	*base_str;
 
-    base_str = ft_strdup(str);
+	base_str = ft_strdup(str);
 	diff = (format.modifier.pad.len - str_len + 1);
 	if (diff > 0)
-    {
-        free(base_str);
-        return pad(format, str, diff, str_len);
-    }
-	return base_str;
+	{
+		free(base_str);
+		return (pad(format, str, diff, str_len));
+	}
+	return (base_str);
 }
 
 static char	*apply_modifier(t_format format, char *base_str)
@@ -78,7 +79,7 @@ char	*new_str_builder(t_format format, va_list params)
 
 	if (format.specifier == DECIMAL || format.specifier == INTEGER)
 		str = ft_itoa(va_arg(params, int));
-	else if (format.specifier == CHAR || format.specifier == PERCENT)
+	else if (format.specifier == CHAR)
 		str = char_to_str(va_arg(params, int));
 	else if (format.specifier == HEX || format.specifier == UPPER_HEX)
 		str = hex_to_str(va_arg(params, unsigned int),
@@ -87,6 +88,8 @@ char	*new_str_builder(t_format format, va_list params)
 		str = pointer_to_str(va_arg(params, void *));
 	else if (format.specifier == UNSIGNED_INT)
 		str = unsigned_to_str(va_arg(params, unsigned int));
+	else if (format.specifier == PERCENT)
+	 	str = ft_strdup("%");
 	else
 		str = str_to_printfstr(va_arg(params, char *));
 	result = (apply_modifier(format, str));
