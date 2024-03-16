@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:15:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/16 11:26:18 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:18:21 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ typedef struct format
 	t_format_specifier		specifier;
 }							t_format;
 
+typedef struct s_builded_str
+{
+	int params_len;
+	char *str;
+} t_builded_str;
+
 # define SPECIFER_LIST_SIZE 10
 
 int							ft_printf(const char *str, ...);
@@ -66,7 +72,7 @@ char						*pointer_to_str(void *pointer_like);
 char						*str_to_printfstr(char *base_str);
 
 char						*char_to_str(char c);
-char						*new_str_builder(t_format format, va_list params);
+t_builded_str		new_str_builder(t_format format, va_list params);
 const t_format_specifier	*get_specifier_list(void);
 
 #endif // FT_PRINTF_H

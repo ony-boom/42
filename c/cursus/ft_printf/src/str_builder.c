@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 06:41:55 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/16 13:10:40 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:02:50 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ static char	*apply_modifier(t_format format, char *base_str)
 	return (ft_strdup(base_str));
 }
 
-char	*new_str_builder(t_format format, va_list params)
+t_builded_str new_str_builder(t_format format, va_list params)
 {
 	char	*str;
-	char	*result;
+	t_builded_str result;
 
 	if (format.specifier == DECIMAL || format.specifier == INTEGER)
 		str = ft_itoa(va_arg(params, int));
@@ -92,7 +92,8 @@ char	*new_str_builder(t_format format, va_list params)
 	 	str = ft_strdup("%");
 	else
 		str = str_to_printfstr(va_arg(params, char *));
-	result = (apply_modifier(format, str));
+	result.params_len = ft_strlen(str);
+	result.str = (apply_modifier(format, str));
 	free(str);
 	return (result);
 }
