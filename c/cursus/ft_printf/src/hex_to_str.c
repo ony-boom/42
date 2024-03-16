@@ -40,7 +40,7 @@ int	get_hex_len(unsigned int n)
 	shift = (sizeof(n) << 3) - 4;
 	while (i < sizeof(n) * 2)
 	{
-		digit = (n >> shift) & 0xf;
+		digit = n >> shift & 0xf;
 		if (digit != 0 || len > 0)
 			len++;
 		shift -= 4;

@@ -16,8 +16,8 @@
 // TODO: fix char printer on 0
 int	main(void)
 {
-	char *str = "%32s\n";
+	char *str = " %c %c %c\n";
 	
-	ft_printf(str, "Hello the world");
-	printf(str, "Hello the world");
+	ft_printf(str, 0, '1', 1);
+	printf(str, 0, '1', 1);
 }
