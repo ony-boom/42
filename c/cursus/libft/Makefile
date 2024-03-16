@@ -1,7 +1,7 @@
 CC = cc
 NAME = libft.a
 HEADER = libft.h
-SRC := ft_abs.c\
+SRC = ft_abs.c\
 ft_atoi.c\
 ft_bzero.c\
 ft_calloc.c\
@@ -16,15 +16,6 @@ ft_isprint.c\
 ft_isspace.c\
 ft_isupper.c\
 ft_itoa.c\
-ft_lstadd_back_bonus.c\
-ft_lstadd_front_bonus.c\
-ft_lstclear_bonus.c\
-ft_lstdelone_bonus.c\
-ft_lstiter_bonus.c\
-ft_lstlast_bonus.c\
-ft_lstmap_bonus.c\
-ft_lstnew_bonus.c\
-ft_lstsize_bonus.c\
 ft_memchr.c\
 ft_memcmp.c\
 ft_memcpy.c\
@@ -55,25 +46,42 @@ ft_tolower.c\
 ft_toupper.c\
 ft_trim_start.c
 
+BONUS_SRC = ft_lstadd_back_bonus.c\
+ft_lstadd_front_bonus.c\
+ft_lstclear_bonus.c\
+ft_lstdelone_bonus.c\
+ft_lstiter_bonus.c\
+ft_lstlast_bonus.c\
+ft_lstmap_bonus.c\
+ft_lstnew_bonus.c\
+ft_lstsize_bonus.c
+
 OBJECTS := $(SRC:.c=.o)
+BONUS_OBJECTS := $(BONUS_SRC:.c=.o)
 
 C_FLAGS = -Wall -Wextra -Werror
 
-all: $(NAME) clean
+all: $(NAME) 
 
 OBJECTS: $(SRC) $(HEADER)
 	@echo "Making .o"
 	@$(CC) $(C_FLAGS) -c $(SRC)
 
+BONUS_OBJECTS: $(BONUS_SRC) $(HEADER)
+	@echo "Making bonus .o"
+	@$(CC) $(C_FLAGS) -c $(BONUS_SRC)
+
 $(NAME): OBJECTS
 	@echo "Making $(NAME)"
 	@ar -crs $(NAME) $(OBJECTS)
 
-bonus: all
-
+bonus: BONUS_OBJECTS OBJECTS
+	@echo "Making $(NAME) with bonus"
+	@ar -crs $(NAME) $(OBJECTS) $(BONUS_OBJECTS)
+	
 clean:
 	@echo "Cleaning Object file"
-	@rm -f $(OBJECTS)
+	@rm -f $(OBJECTS) $(BONUS_OBJECTS)
 
 fclean: clean
 	@echo "Cleaning binary"
@@ -81,15 +89,4 @@ fclean: clean
 
 re: fclean all
 
-format: $(SRC)
-	@c_formatter_42 ./libft.h
-	@for file in ./*.c; do \
-		c_formatter_42 "$$file"; \
-	done
-
-challenge: challenge.c
-	@$(CC) $(C_FLAGS) challenge.c $(SRC) -o challenge
-	./challenge
-	@rm -f ./challenge
-
-.PHONY: clean re fclean format
+.PHONY: clean fclean
