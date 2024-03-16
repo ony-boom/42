@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:15:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/16 11:01:38 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 11:26:18 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ t_format_modifier			get_modifier(const char *str);
 
 t_pad_conf					get_pad_conf(const char *str);
 
-int							get_hex_len(unsigned long n);
-char						*hex_to_str(unsigned long n, int use_upper);
+char						*hex_to_str(unsigned int n, int use_upper);
 
 char						*unsigned_to_str(unsigned int n);
 char						*pointer_to_str(void *pointer_like);

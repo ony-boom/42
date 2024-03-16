@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 13:38:05 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/16 11:01:50 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:39:46 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_hex_len(unsigned long n)
 	int				digit;
 
 	i = 0;
-	len = 0;
+	len = n == 0;
 	shift = (sizeof(n) << 3) - 4;
 	while (i < sizeof(n) * 2)
 	{
@@ -60,7 +60,7 @@ void	set_hexstr(unsigned int n, int use_upper, char *dst)
 		*dst = get_hex(n, use_upper);
 }
 
-char	*hex_to_str(unsigned long n, int use_upper)
+char	*hex_to_str(unsigned int n, int use_upper)
 {
 	int		len;
 	char	*str;
@@ -70,5 +70,6 @@ char	*hex_to_str(unsigned long n, int use_upper)
 	if (!str)
 		return (NULL);
 	set_hexstr(n, use_upper, str);
+	str[len] = '\0';
 	return (str);
 }
