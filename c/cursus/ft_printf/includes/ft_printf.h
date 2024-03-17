@@ -3,10 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: rony-lov <rony-lov@student.42antananariv>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/17 22:28:43 by rony-lov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 13:15:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/16 16:18:21 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/17 11:36:08 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/17 22:08:01 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +29,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-typedef enum e_format
+typedef enum specifier
 {
 	CHAR = 'c',
 	INTEGER = 'i',
@@ -28,51 +40,63 @@ typedef enum e_format
 	HEX = 'x',
 	UPPER_HEX = 'X',
 	PERCENT = '%'
-}							t_format_specifier;
+}								t_format_specifier;
 
-# define NOT_FOUND_SPECIFIER '!'
-
-typedef struct s_pad_conf
+typedef enum modifier
 {
-	int						len;
-	int						is_right;
-	int						with_zero;
-}							t_pad_conf;
+	MINUS = '-',
+	ZERO = '0',
+	DOT = '.',
+	SHARP = '#',
+	SPACE = ' ',
+	PLUS = '+'
+}								t_format_modifier;
 
-typedef struct format_modifier
+typedef enum my_bool
 {
-	t_pad_conf				pad;
-}							t_format_modifier;
+	FALSE = 0,
+	TRUE = 1
+}								t_bool;
 
-typedef struct format
+typedef struct pad_modifier
 {
-	t_format_modifier		modifier;
-	t_format_specifier		specifier;
-}							t_format;
+	int							len;
+	t_bool						is_zero;
+	t_bool						is_right;
+}								t_pad_modifier;
 
-typedef struct s_builded_str
+typedef struct int_modifier
 {
-	int params_len;
-	char *str;
-} t_builded_str;
+	t_bool						show_sign;
+	t_bool						use_space_for_positive;
+}								t_int_modifier;
 
-# define SPECIFER_LIST_SIZE 10
+typedef struct format_modifier_config
+{
+	int							max_width;
+	t_pad_modifier				pad;
+	t_int_modifier				int_modifier;
+	t_bool						prepend_hex_prefix;
+}								t_format_modifier_config;
 
-int							ft_printf(const char *str, ...);
-int							get_hex(int n, int use_upper);
-t_format					get_format(const char *str, int *format_len);
-t_format_modifier			get_modifier(const char *str);
+typedef struct format_config
+{
+	int							format_len;
+	t_bool						has_config;
+	t_format_specifier			specifier;
+	t_format_modifier_config	modifier_config;
+}								t_format_config;
 
-t_pad_conf					get_pad_conf(const char *str);
+t_bool							is_valid_char(char c, const char *arr,
+									int size);
+t_bool							is_valid_format_specifier(char c);
+t_bool							is_valid_format_modifier(char c);
 
-char						*hex_to_str(unsigned int n, int use_upper);
-
-char						*unsigned_to_str(unsigned int n);
-char						*pointer_to_str(void *pointer_like);
-char						*str_to_printfstr(char *base_str);
-
-char						*char_to_str(char c);
-t_builded_str		new_str_builder(t_format format, va_list params);
-const t_format_specifier	*get_specifier_list(void);
-
+t_format_config					get_format_config(const char *str);
+t_pad_modifier					get_pad_modifier(char *format, int *format_len);
+t_int_modifier					get_int_modifier(const char *format,
+									int *format_len);
+int								get_hex(int n, int use_upper);
+int								ft_printf(const char *str, ...);
+int								get_max_width(char *format, int *format_len);
 #endif // FT_PRINTF_H
