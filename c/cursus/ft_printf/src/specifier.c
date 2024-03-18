@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:45:33 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/17 22:59:05 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/18 07:42:55 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,36 @@
 
 t_bool	is_valid_format_specifier(char c)
 {
-	const t_format_specifier	specifiers[] = {
-		CHAR,
-		INTEGER,
-		STR,
-		DECIMAL,
-		POINTER,
-		UNSIGNED_INT,
-		HEX,
-		UPPER_HEX,
-		PERCENT
-	};
-	int							num_specifiers;
+	const t_format_specifier	specifiers[] = {CHAR, INTEGER, STR, DECIMAL,
+			POINTER, UNSIGNED_INT, HEX, UPPER_HEX, PERCENT};
+	int							i;
+	int							size;
 
-	num_specifiers = sizeof(specifiers) / sizeof(specifiers[0]);
-	return (is_valid_char(c, (const char *)specifiers, num_specifiers));
+	i = 0;
+	size = sizeof(specifiers) / sizeof(specifiers[0]);
+	while (i < size)
+	{
+		if (specifiers[i] == (t_format_specifier)c)
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
 }
 
 t_bool	is_valid_format_modifier(char c)
 {
-	const t_format_modifier	modifiers[] = {
-		MINUS,
-		ZERO,
-		DOT,
-		SHARP,
-		SPACE,
-		PLUS
-	};
-	int						num_modifiers;
+	const t_format_modifier	modifiers[] = {MINUS, ZERO, DOT, SHARP, SPACE,
+			PLUS};
+	int						i;
+	int						size;
 
-	num_modifiers = sizeof(modifiers) / sizeof(modifiers[0]);
-	return (is_valid_char(c, (const char *)modifiers, num_modifiers));
+	i = 0;
+	size = sizeof(modifiers) / sizeof(modifiers[0]);
+	while (i < size)
+	{
+		if (modifiers[i] == (t_format_modifier)c)
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
 }

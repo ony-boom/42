@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.c                                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rony-lov <rony-lov@student.42antananariv>  +#+  +:+       +#+        */
+/*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:22:08 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/17 22:30:34 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/18 07:43:07 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-t_bool	is_valid_char(char c, const char *arr, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (arr[i] == c)
-			return (TRUE);
-	}
-	return (FALSE);
-}
 
 int	get_hex(int n, int use_upper)
 {
