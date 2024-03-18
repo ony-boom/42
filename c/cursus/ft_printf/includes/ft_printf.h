@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/17 22:56:47 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/18 07:38:28 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct format_config
 	t_format_modifier_config	modifier_config;
 }								t_format_config;
 
-t_bool							is_valid_char(char c, const char *arr,
+t_bool							is_valid_char(char c, const t_format_specifier *arr,
 									int size);
 t_bool							is_valid_format_specifier(char c);
 t_bool							is_valid_format_modifier(char c);
@@ -85,6 +85,7 @@ t_pad_modifier					get_pad_modifier(char *format, int *format_len);
 t_int_modifier					get_int_modifier(const char *format,
 									int *format_len);
 int								get_hex(int n, int use_upper);
+int	print_type(t_format_config config, va_list params);
 int								ft_printf(const char *str, ...);
 int								get_max_width(char *format, int *format_len);
 #endif // FT_PRINTF_H

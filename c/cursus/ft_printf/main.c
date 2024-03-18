@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 14:22:16 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/17 22:52:17 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/18 07:15:00 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	main(void)
 {
-	char *str = " %c %c %c \n";
+	char *str = "%p\n";
 	
-	ft_printf(str, '0', 0, '1');
-	printf(str, '0', 0, '1');
+	ft_printf(str, -1);
+	printf(str, -1);
 }

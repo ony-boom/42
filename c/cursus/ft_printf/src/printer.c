@@ -6,11 +6,12 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:22:14 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/17 22:54:22 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/18 07:40:04 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <stdio.h>
 
 static int	print_unsigned(unsigned int n)
 {
@@ -39,7 +40,7 @@ static int	print_hex(unsigned int n, int use_upper)
 		printed += print_hex((n % base), use_upper);
 	}
 	else
-		printed += ft_putchar_fd((char)get_hex((int)n, use_upper), 1);
+		printed += ft_putchar_fd((char)get_hex(n, use_upper), 1);
 	return (printed);
 }
 
@@ -62,8 +63,7 @@ static int	print_ptr(void *pointer_like)
 		shift -= 4;
 	while (shift >= 0)
 	{
-		printed += ft_putchar_fd((char)get_hex((int)(ptr >> shift) & 0xf, 0),
-				1);
+		printed += ft_putchar_fd((char)get_hex((ptr >> shift) & 0xf, 0), 1);
 		shift -= 4;
 	}
 	return (printed);
@@ -82,7 +82,8 @@ static int	print_str(char *str)
 
 int	print_type(t_format_config config, va_list params)
 {
-	// TODO: The work is here
+	// TODO: The work is here build a printer for each type
+	// that handle passed configuration
 	if (config.specifier == PERCENT)
 		return (ft_putchar_fd('%', 1));
 	else if (config.specifier == CHAR)
