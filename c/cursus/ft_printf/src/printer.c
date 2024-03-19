@@ -63,7 +63,7 @@ static int	print_ptr(void *pointer_like)
 		shift -= 4;
 	while (shift >= 0)
 	{
-		printed += ft_putchar_fd((char)get_hex((ptr >> shift) & 0xf, 0), 1);
+		printed += ft_putchar_fd((char)get_hex((char)(ptr >> shift) & 0xf, 0), 1);
 		shift -= 4;
 	}
 	return (printed);

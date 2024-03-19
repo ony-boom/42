@@ -75,8 +75,15 @@ typedef struct format_config
 	t_format_modifier_config	modifier_config;
 }								t_format_config;
 
-t_bool							is_valid_char(char c, const t_format_specifier *arr,
-									int size);
+typedef struct print_pad_params
+{
+    void *rest;
+    t_bool is_right;
+    t_bool is_char;
+    int padding_count;
+    char padding_char;
+} t_print_pad_params;
+
 t_bool							is_valid_format_specifier(char c);
 t_bool							is_valid_format_modifier(char c);
 
@@ -90,4 +97,5 @@ int								ft_printf(const char *str, ...);
 int								get_max_width(char *format, int *format_len);
 int print_char(char c, t_format_config config);
 int print_repeat(char c, int count);
+int print_pad(t_print_pad_params params);
 #endif // FT_PRINTF_H
