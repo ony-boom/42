@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/19 08:08:29 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:44:24 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct print_pad_params
 {
     void *rest;
     t_bool is_right;
-    t_bool is_char;
     int padding_count;
     char padding_char;
 } t_print_pad_params;
@@ -97,5 +96,6 @@ int								ft_printf(const char *str, ...);
 int								get_max_width(char *format, int *format_len);
 int print_char(char c, t_format_config config);
 int print_repeat(char c, int count);
-int print_pad(t_print_pad_params params);
+int print_pad(t_print_pad_params params, int(*printer)(void *));
+int	print_str(char *str, t_format_config config);
 #endif // FT_PRINTF_H

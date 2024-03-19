@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:22:14 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/19 06:56:31 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:51:52 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,6 @@ static int	print_ptr(void *pointer_like)
 	return (printed);
 }
 
-static int	print_str(char *str)
-{
-	if (!str || !*str)
-	{
-		if (!str)
-			return (ft_putstr_fd("(null)", 1));
-		return (0);
-	}
-	return (ft_putstr_fd(str, 1));
-}
-
 int	print_type(t_format_config config, va_list params)
 {
 	if (config.specifier == PERCENT)
@@ -96,5 +85,5 @@ int	print_type(t_format_config config, va_list params)
 	else if (config.specifier == POINTER)
 		return (print_ptr(va_arg(params, void *)));
 	else
-		return (print_str(va_arg(params, char *)));
+		return (print_str(va_arg(params, char *), config));
 }
