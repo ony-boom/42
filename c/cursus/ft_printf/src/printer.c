@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:22:14 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/18 07:40:04 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/19 06:56:31 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,10 @@ static int	print_str(char *str)
 
 int	print_type(t_format_config config, va_list params)
 {
-	// TODO: The work is here build a printer for each type
-	// that handle passed configuration
 	if (config.specifier == PERCENT)
-		return (ft_putchar_fd('%', 1));
+		return (print_char('%', config));
 	else if (config.specifier == CHAR)
-		return (ft_putchar_fd(va_arg(params, int), 1));
+		return (print_char(va_arg(params, int), config));
 	else if (config.specifier == INTEGER || config.specifier == DECIMAL)
 		return (ft_putnbr_fd(va_arg(params, int), 1));
 	else if (config.specifier == UNSIGNED_INT)
