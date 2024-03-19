@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/18 07:38:28 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/19 08:08:29 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,6 @@ int								get_hex(int n, int use_upper);
 int	print_type(t_format_config config, va_list params);
 int								ft_printf(const char *str, ...);
 int								get_max_width(char *format, int *format_len);
+int print_char(char c, t_format_config config);
+int print_repeat(char c, int count);
 #endif // FT_PRINTF_H
