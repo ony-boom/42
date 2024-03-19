@@ -10,30 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "../includes/ft_printf.h"
 
 static int	get_pad_len(char *format, int *format_len)
 {
 	char *temp;
 	temp = format;
-	char *pad_len;
 	int pad_len_as_int;
 
+    pad_len_as_int = 0;
 	while (ft_isdigit(*temp))
 	{
+        pad_len_as_int = pad_len_as_int * 10 + (*temp - '0');
 		temp++;
-		*format_len += 1;
+        (*format_len)++;
 	}
-	pad_len = ft_substr(format, 0, *format_len - 1);
-	pad_len_as_int = ft_atoi(pad_len);
-	free(pad_len);
 	return pad_len_as_int;
 }
 
 t_pad_modifier	get_pad_modifier(char *format, int *format_len)
 {
 	t_pad_modifier	pad;
-
 	pad.is_zero = *format == '0';
 	pad.is_right = *format == '-';
 	format += pad.is_zero || pad.is_right;
