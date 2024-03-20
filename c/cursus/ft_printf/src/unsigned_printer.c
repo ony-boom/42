@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   digit_printer.c                                    :+:      :+:    :+:   */
+/*   unsigned_printer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 09:21:44 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 17:49:43 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/20 17:51:37 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/20 17:53:49 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int	print_unsigned(unsigned int n)
+static int	unsigned_printer(unsigned int n)
 {
 	int	printed;
 
 	printed = 0;
 	if (n >= 10)
 	{
-		printed += print_unsigned((n / 10));
-		printed += print_unsigned((n % 10));
+		printed += unsigned_printer((n / 10));
+		printed += unsigned_printer((n % 10));
 	}
 	else
 		printed += ft_putchar_fd(n + '0', 1);
@@ -32,18 +32,10 @@ int unsigned_print_fn(void *p_unsigned)
 	unsigned int n;
 
 	n = *(int *)p_unsigned;
-	return print_unsigned(n);
+	return unsigned_printer(n);
 }
 
-int	digit_print_fn(void *p_digit)
-{
-	int	digit;
-
-	digit = *(int *)p_digit;
-	return (ft_putnbr_fd(digit, 1));
-}
-
-int	print_digit(int digit, t_format_config config)
+int	print_unsigned(unsigned int digit, t_format_config config)
 {
 	int							pad;
 	int							printed;
@@ -55,7 +47,7 @@ int	print_digit(int digit, t_format_config config)
 	modifier = config.modifier_config;
 	pad = modifier.pad.len - get_int_len(digit);
 	if (!config.has_config || (pad <= 0 && !config.modifier_config.pad.is_dot))
-		return (ft_putnbr_fd(digit, 1));
+		return (unsigned_printer(digit));
 	if (config.modifier_config.pad.is_zero || config.modifier_config.pad.is_dot)
 		padding_char = '0';
 	printed += print_pad(
