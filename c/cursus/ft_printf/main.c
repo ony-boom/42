@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 14:22:16 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/19 21:47:40 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/20 09:16:58 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	main(void)
 {
-	char *str = "%-10s\n";
+	char *str = "%.4d \n";
 	
-	ft_printf(str, "poop");
-	printf(str, "poop");
+	// ft_printf(str, "");
+	printf(str, 200);
 }

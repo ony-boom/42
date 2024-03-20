@@ -6,11 +6,10 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:22:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/19 08:13:49 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/20 08:50:40 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "../includes/ft_printf.h"
 
 static int	get_pad_len(char *format, int *format_len)
@@ -43,7 +42,7 @@ t_int_modifier	get_int_modifier(const char *format, int *format_len)
 {
 	t_int_modifier	int_modifier;
 
-	*format_len += 1;
+	(void)format_len;
 	int_modifier.show_sign = TRUE;
 	int_modifier.use_space_for_positive = *format == SPACE;
 	return (int_modifier);
@@ -52,6 +51,7 @@ t_int_modifier	get_int_modifier(const char *format, int *format_len)
 int	get_max_width(char *format, int *format_len)
 {
 	format++;
-	*format_len += 1;
+	if (!ft_isdigit(*format))
+		return -1;
 	return (get_pad_len(format, format_len));
 }
