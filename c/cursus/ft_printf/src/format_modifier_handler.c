@@ -31,14 +31,14 @@ static int	get_pad_len(char *format, int *format_len)
 static int	get_max_width(char *format, int *format_len)
 {
 	if (!ft_isdigit(*format))
-		return -1;
+		return (-1);
 	return (get_pad_len(format, format_len));
 }
 
 t_pad_modifier	get_pad_modifier(char *format, int *format_len)
 {
 	t_pad_modifier	pad;
-	
+
 	pad.is_zero = *format == '0';
 	pad.is_right = *format == '-';
 	pad.is_dot = *format == '.';
