@@ -1,47 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_printer.c                                      :+:      :+:    :+:   */
+/*   digit_printer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 21:36:57 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 08:43:19 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/20 09:21:44 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/20 09:24:07 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int str_printer(char *str)
-{
-	if (!str || !*str)
-	{
-		if (!str)
-			return (ft_putstr_fd("(null)", 1));
-		return (0);
-	}
-	return (ft_putstr_fd(str, 1));
-}
 
-static int	str_print_fn(void *character)
-{
-	char	*str;
-
-	str = (char *)character;
-	return (str_printer(str));
-}
-
-static int printn_str(char *str, int n)
-{
-	int i;
-	i = 0;
-
-	while (i < n && *str)
-		i += ft_putchar_fd(*str++, 1);
-	return i;
-}
-
-int	print_str(char *str, t_format_config config)
+int	print_digit(int *digit, t_bool is_unsigned ,t_format_config config)
 {
 	int							pad;
 	int							printed;
@@ -49,10 +21,10 @@ int	print_str(char *str, t_format_config config)
 
 	printed = 0;
 	modifier = config.modifier_config;
-	pad = modifier.pad.len - ft_strlen(str);
+	pad = modifier.pad.len - get_int_len(*digit);
 	if (!config.has_config)
-		return (str_printer(str));
-	if(config.modifier_config.max_width)
+		return (ft_putnbr_fd(*digit, 1));
+	/* if(config.modifier_config.max_width)
 		return printn_str(str, config.modifier_config.max_width);
 	if (pad <= 0)
 		return (str_printer(str));
@@ -63,6 +35,6 @@ int	print_str(char *str, t_format_config config)
 			.padding_char = ' ',
 			.is_right = modifier.pad.is_right,
 		},
-		str_print_fn);
+		str_print_fn); */
 	return (printed);
 }
