@@ -27,13 +27,12 @@ int	get_hex(int n, int use_upper)
 	}
 }
 
-int print_repeat(char c, int count)
+int	print_repeat(char c, int count)
 {
-	int printed;
+	int	printed;
 
 	printed = 0;
-
 	while (printed < count)
 		printed += ft_putchar_fd(c, 1);
-	return printed;
+	return (printed);
 }
