@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:22:14 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 07:46:51 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:53:43 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static int	print_ptr(void *pointer_like)
 		shift -= 4;
 	while (shift >= 0)
 	{
-		printed += ft_putchar_fd((char)get_hex((char)(ptr >> shift) & 0xf, 0), 1);
+		printed += ft_putchar_fd((char)get_hex((char)(ptr >> shift) & 0xf, 0),
+				1);
 		shift -= 4;
 	}
 	return (printed);
@@ -76,7 +77,7 @@ int	print_type(t_format_config config, va_list params)
 	else if (config.specifier == CHAR)
 		return (print_char(va_arg(params, int), config));
 	else if (config.specifier == INTEGER || config.specifier == DECIMAL)
-		return (ft_putnbr_fd(va_arg(params, int), 1));
+		return (print_digit(va_arg(params, int), config));
 	else if (config.specifier == UNSIGNED_INT)
 		return (print_unsigned(va_arg(params, unsigned int)));
 	else if (config.specifier == HEX || config.specifier == UPPER_HEX)
