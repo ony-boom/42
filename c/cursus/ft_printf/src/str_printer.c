@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 21:36:57 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 18:27:47 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:04:29 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	print_str(char *str, t_format_config config)
 	int							pad;
 	int							printed;
 	t_format_modifier_config	modifier;
-
 	printed = 0;
 	modifier = config.modifier_config;
 	pad = modifier.pad.len - ft_strlen(str);

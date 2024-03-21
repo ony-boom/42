@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:22:08 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/21 13:21:34 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:27:18 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,29 @@ int	get_hex(int n, int use_upper)
 	}
 }
 
-int get_hex_len(unsigned int n) {
-  int len;
+int	get_hex_len(unsigned int n)
+{
+	int	len;
 
-  len = 0;
-  while ((int)n > 0) {
-    n /= 16;
-    len++;
-  }
-  return len;
+	if (n == 0)
+		return (1);
+	len = 0;
+	while (n != 0)
+	{
+		n /= 16;
+		len++;
+	}
+	return (len);
 }
 
-int print_hex_prefix(t_bool use_upper)
+int	print_hex_prefix(unsigned int hex,t_bool use_upper)
 {
+	if (hex == 0)
+		return 0;
 	if (use_upper)
-		return ft_putstr_fd("0X", 1);
+		return (ft_putstr_fd("0X", 1));
 	else
-		return ft_putstr_fd("0x", 1);
+		return (ft_putstr_fd("0x", 1));
 }
 
 int	print_repeat(char c, int count)
