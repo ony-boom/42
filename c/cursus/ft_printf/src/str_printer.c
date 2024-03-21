@@ -38,7 +38,6 @@ int	print_str(char *str, t_format_config config)
 
 	if (!str)
 		return (ft_putstr_fd("(null)", 1));
-
 	printed = 0;
 	modifier = config.modifier_config;
 	pad = modifier.pad.len - ft_strlen(str);
