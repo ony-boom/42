@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 14:22:16 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 16:59:16 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:10:22 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	main(void)
 {
-	char *str = "%.2s \n";
+	char *str = "%02x\n";
 	
-	ft_printf(str, "Soasoa");
-	printf(str, "Soasoa");
+	ft_printf(str, -16);
+	printf(str, -16);
 }

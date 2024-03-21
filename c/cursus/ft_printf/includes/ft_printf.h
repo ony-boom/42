@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 17:48:24 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:21:13 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ typedef struct print_pad_params
 {
 	void						*rest;
 	t_bool						is_right;
+    char						padding_char;
 	int							padding_count;
-	char						padding_char;
 }								t_print_pad_params;
 
 t_bool							is_valid_format_specifier(char c);
@@ -100,6 +100,16 @@ int								print_pad(t_print_pad_params params,
 									int (*printer)(void *));
 int								print_str(char *str, t_format_config config);
 
-int								print_digit(int digit,
+t_print_pad_params				get_print_pad_params(void *rest, int pad_count,
+									char padding_char, t_bool is_right);
+int								print_number(long long digit,
+									int (*print_fn)(long long *),
 									t_format_config config);
+int								print_digit(int digit, t_format_config config);
+int								print_unsigned(unsigned int digit,
+									t_format_config config);
+
+int print_hex_prefix(t_bool use_upper);
+int get_hex_len(unsigned int n);
+int	print_hex(unsigned int hex, t_bool use_upper, t_format_config config);
 #endif // FT_PRINTF_H
