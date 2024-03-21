@@ -20,7 +20,7 @@ static int	str_print_fn(void *character)
 	return (ft_putstr_fd(str, 1));
 }
 
-static int	printn_str(char *str, int n)
+static int	print_n_str(char *str, int n)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ int	print_str(char *str, t_format_config config)
 	if (!config.has_config)
 		return (ft_putstr_fd(str, 1));
 	if (config.modifier_config.pad.is_dot)
-		return (printn_str(str, config.modifier_config.pad.len));
+		return (print_n_str(str, config.modifier_config.pad.len));
 	if (pad <= 0)
 		return (ft_putstr_fd(str, 1));
 	printed += print_pad(get_print_pad_params(str, pad, ' ',

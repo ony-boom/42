@@ -42,7 +42,7 @@ static int	pointer_printer(void *pointer_like)
 		shift -= 4;
 	while (shift >= 0)
 	{
-		printed += ft_putchar_fd(get_hex((ptr >> shift) & 0xf, 0), 1);
+		printed += ft_putchar_fd((char)get_hex((int)(ptr >> shift) & 0xf, 0), 1);
 		shift -= 4;
 	}
 	return (printed);
