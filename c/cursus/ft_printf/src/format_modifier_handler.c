@@ -38,7 +38,7 @@ static int	get_max_width(char *format, int *format_len)
 t_pad_modifier	get_pad_modifier(char *format, int *format_len)
 {
 	t_pad_modifier	pad;
-	t_bool is_space;
+	t_bool			is_space;
 
 	pad.is_zero = *format == '0';
 	pad.is_right = *format == '-';
@@ -55,6 +55,7 @@ t_pad_modifier	get_pad_modifier(char *format, int *format_len)
 t_int_modifier	get_int_modifier(const char *format)
 {
 	t_int_modifier	int_modifier;
+
 	int_modifier.show_sign = TRUE;
 	int_modifier.use_space_for_positive = *format == SPACE;
 	return (int_modifier);

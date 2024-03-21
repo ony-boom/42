@@ -42,10 +42,10 @@ int	get_hex_len(unsigned int n)
 	return (len);
 }
 
-int	print_hex_prefix(unsigned int hex,t_bool use_upper)
+int	print_hex_prefix(unsigned int hex, t_bool use_upper)
 {
 	if (hex == 0)
-		return 0;
+		return (0);
 	if (use_upper)
 		return (ft_putstr_fd("0X", 1));
 	else
