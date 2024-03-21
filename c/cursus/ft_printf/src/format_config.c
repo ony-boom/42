@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:24:24 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 16:56:20 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:20:08 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_format_config	get_format_config(const char *str)
 	init_format_config(&config);
 	if (is_valid_format_specifier(*str))
 	{
-		config.specifier = (t_format_specifier)*str;
+		config.specifier = (t_format_specifier) * str;
 		return (config);
 	}
 	make_config(str, &config);

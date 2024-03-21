@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 21:36:57 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 16:49:06 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:27:47 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,7 @@ int	print_str(char *str, t_format_config config)
 		return (printn_str(str, config.modifier_config.pad.len));
 	if (pad <= 0)
 		return (str_printer(str));
-	printed += print_pad(
-		(t_print_pad_params){
-			.rest = str,
-			.padding_count = pad,
-			.padding_char = ' ',
-			.is_right = modifier.pad.is_right,
-		},
-		str_print_fn);
+	printed += print_pad(get_print_pad_params(str, pad, ' ',
+				modifier.pad.is_right), str_print_fn);
 	return (printed);
 }

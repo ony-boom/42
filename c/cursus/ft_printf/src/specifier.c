@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:45:33 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/18 07:42:55 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:29:32 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_bool	is_valid_format_specifier(char c)
 {
 	const t_format_specifier	specifiers[] = {CHAR, INTEGER, STR, DECIMAL,
-			POINTER, UNSIGNED_INT, HEX, UPPER_HEX, PERCENT};
+		POINTER, UNSIGNED_INT, HEX, UPPER_HEX, PERCENT};
 	int							i;
 	int							size;
 
@@ -33,7 +33,7 @@ t_bool	is_valid_format_specifier(char c)
 t_bool	is_valid_format_modifier(char c)
 {
 	const t_format_modifier	modifiers[] = {MINUS, ZERO, DOT, SHARP, SPACE,
-			PLUS};
+		PLUS};
 	int						i;
 	int						size;
 
