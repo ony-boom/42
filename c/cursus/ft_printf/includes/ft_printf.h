@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/21 13:21:13 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:27:36 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ t_bool							is_valid_format_modifier(char c);
 
 t_format_config					get_format_config(const char *str);
 t_pad_modifier					get_pad_modifier(char *format, int *format_len);
-t_int_modifier					get_int_modifier(const char *format,
-									int *format_len);
+t_int_modifier					get_int_modifier(const char *format);
 int								get_hex(int n, int use_upper);
 int								print_type(t_format_config config,
 									va_list params);
@@ -109,7 +108,7 @@ int								print_digit(int digit, t_format_config config);
 int								print_unsigned(unsigned int digit,
 									t_format_config config);
 
-int print_hex_prefix(t_bool use_upper);
+int	print_hex_prefix(unsigned int hex,t_bool use_upper);
 int get_hex_len(unsigned int n);
 int	print_hex(unsigned int hex, t_bool use_upper, t_format_config config);
 #endif // FT_PRINTF_H

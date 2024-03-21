@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:22:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/20 16:58:23 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:05:22 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ static int	get_max_width(char *format, int *format_len)
 t_pad_modifier	get_pad_modifier(char *format, int *format_len)
 {
 	t_pad_modifier	pad;
+	t_bool is_space;
 
 	pad.is_zero = *format == '0';
 	pad.is_right = *format == '-';
 	pad.is_dot = *format == '.';
-	format += pad.is_zero || pad.is_right || pad.is_dot;
+	is_space = *format == ' ';
+	format += pad.is_zero || pad.is_right || pad.is_dot || is_space;
 	if (pad.is_dot)
 		pad.len = get_max_width(format, format_len);
 	else
@@ -50,11 +52,9 @@ t_pad_modifier	get_pad_modifier(char *format, int *format_len)
 	return (pad);
 }
 
-t_int_modifier	get_int_modifier(const char *format, int *format_len)
+t_int_modifier	get_int_modifier(const char *format)
 {
 	t_int_modifier	int_modifier;
-
-	(void)format_len;
 	int_modifier.show_sign = TRUE;
 	int_modifier.use_space_for_positive = *format == SPACE;
 	return (int_modifier);
