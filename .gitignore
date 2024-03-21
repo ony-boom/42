@@ -2,4 +2,8 @@
 */**/obj
 */**/test
 */**/*.a
+*/**/*.out
 */**/.vscode
+*/**/.idea
+.idea
+.vscode

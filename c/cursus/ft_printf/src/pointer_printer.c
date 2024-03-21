@@ -5,14 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/03 14:49:48 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 19:26:22 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/21 22:51:29 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/22 00:05:01 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../includes/ft_printf.h"
 
-static int	print_ptr(void *pointer_like)
+static int	get_pointer_len(void *ptr)
+{
+	int					len;
+	unsigned long int	temp;
+
+	len = 0;
+	temp = (unsigned long int)ptr;
+	while (temp != 0)
+	{
+		len++;
+		temp /= 16;
+	}
+	return (len + 2);
+}
+
+static int	pointer_printer(void *pointer_like)
 {
 	int			shift;
 	int			printed;
@@ -21,30 +35,39 @@ static int	print_ptr(void *pointer_like)
 	printed = 0;
 	ptr = (uintptr_t)pointer_like;
 	if (!ptr)
-	{
-		printed += ft_putstr_fd("(nil)", 1);
-		return (printed);
-	}
+		return (ft_putstr_fd("(nil)", 1));
 	printed += ft_putstr_fd("0x", 1);
 	shift = (sizeof(ptr) << 3) - 4;
-	// this next while loop is used to only show
-	// the most non-zero important nibbles
 	while (shift >= 0 && ((ptr >> shift) & 0xf) == 0)
 		shift -= 4;
 	while (shift >= 0)
 	{
-		printed += ft_putchar_fd(get_hex((ptr >> shift) & 0xf, 0), 1);
+		printed += ft_putchar_fd((char)get_hex((int)(ptr >> shift) & 0xf, 0), 1);
 		shift -= 4;
 	}
 	return (printed);
 }
 
-int	printer(va_list params)
+int	pointer_printer_fn(void *p_pointer_like)
 {
-	return (print_ptr(va_arg(params, void *)));
+	void	*pointer_like;
+
+	pointer_like = *(void **)p_pointer_like;
+	return (pointer_printer(pointer_like));
 }
 
-t_printer	*pointer_printer(void)
+int	print_ptr(void *ptr, t_format_config config)
 {
-	return (printer_new(POINTER, printer));
+	int							pad;
+	int							printed;
+	t_format_modifier_config	modifier;
+
+	printed = 0;
+	modifier = config.modifier_config;
+	pad = modifier.pad.len - get_pointer_len(ptr);
+	if (!config.has_config || (pad <= 0 && !config.modifier_config.pad.is_dot))
+		return (pointer_printer(ptr));
+	printed += print_pad(get_print_pad_params(&ptr, pad, ' ',
+				modifier.pad.is_right), pointer_printer_fn);
+	return (printed);
 }

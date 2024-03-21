@@ -5,49 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 16:15:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 19:25:42 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/17 11:36:36 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/20 07:58:02 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	print_based_on_type(char *str, va_list params, t_printer **printers)
-{
-	t_printer	*printer;
-	t_format	format;
-
-	format = *str;
-	printer = get_printer_at_format(printers, format);
-	if (!printer || !printer->fn)
-		return (ft_putchar_fd(va_arg(params, int), 1));
-	return (printer->fn(params));
-}
-
 int	ft_printf(const char *str, ...)
 {
-	va_list		params;
-	int			printed_char;
-	char		format_specifier;
-	t_printer	**printers;
+	int				printed;
+	va_list			params;
+	t_format_config	format_config;
 
-	printed_char = 0;
-	format_specifier = '%';
 	va_start(params, str);
-	printers = init_printers();
+	printed = 0;
 	while (*str)
 	{
-		if (*str == format_specifier)
+		if (*str == '%')
 		{
-			printed_char += print_based_on_type((char *)(++str), params,
-					printers);
-			str++;
+			format_config = get_format_config(++str);
+			printed += print_type(format_config, params);
+			str += format_config.format_len;
 			continue ;
 		}
-		printed_char++;
-		ft_putchar_fd(*str++, 1);
+		printed += ft_putchar_fd(*str++, 1);
 	}
 	va_end(params);
-	free_mem(printers);
-	return (printed_char);
+	return (printed);
 }

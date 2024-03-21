@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 13:15:35 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/16 10:41:10 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/21 23:49:18 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-typedef enum e_format
+typedef enum specifier
 {
 	CHAR = 'c',
 	INTEGER = 'i',
@@ -28,49 +28,90 @@ typedef enum e_format
 	HEX = 'x',
 	UPPER_HEX = 'X',
 	PERCENT = '%'
-}					t_format;
+}								t_format_specifier;
 
-# define PRINTER_LIST_SIZE 10
-
-typedef int			(*t_print_fn)(va_list);
-
-typedef struct s_printer
+typedef enum modifier
 {
-	t_format		format_specifier;
-	t_print_fn		fn;
-}					t_printer;
+	MINUS = '-',
+	ZERO = '0',
+	DOT = '.',
+	SHARP = '#',
+	SPACE = ' ',
+	PLUS = '+'
+}								t_format_modifier;
+
+typedef enum my_bool
+{
+	FALSE = 0,
+	TRUE = 1
+}								t_bool;
+
+typedef struct pad_modifier
+{
+	int							len;
+	t_bool						is_dot;
+	t_bool						is_zero;
+	t_bool						is_right;
+}								t_pad_modifier;
+
+typedef struct int_modifier
+{
+	t_bool						show_sign;
+	t_bool						use_space_for_positive;
+}								t_int_modifier;
+
+typedef struct format_modifier_config
+{
+	t_pad_modifier				pad;
+	t_int_modifier				int_modifier;
+	t_bool						prepend_hex_prefix;
+}								t_format_modifier_config;
 
 typedef struct format_config
 {
-	t_format		format;
-	unsigned int	min_width;
-	unsigned int	left_pad;
-	unsigned int	right_pad;
-}					t_format_config;
+	int							format_len;
+	t_bool						has_config;
+	t_format_specifier			specifier;
+	t_format_modifier_config	modifier_config;
+}								t_format_config;
 
-t_printer			*printer_new(t_format specifier, t_print_fn printer_fn);
+typedef struct print_pad_params
+{
+	void						*rest;
+	t_bool						is_right;
+	char						padding_char;
+	int							padding_count;
+}								t_print_pad_params;
 
-t_printer			**init_printers(void);
-void				register_printer(t_printer **registry, t_printer *printer);
+t_bool							is_valid_format_specifier(char c);
+t_bool							is_valid_format_modifier(char c);
 
-t_printer			*get_printer_at_format(t_printer **printers,
-						t_format format);
+t_format_config					get_format_config(const char *str);
+t_pad_modifier					get_pad_modifier(char *format, int *format_len);
+t_int_modifier					get_int_modifier(const char *format);
+int								get_hex(int n, int use_upper);
+int								print_type(t_format_config config,
+									va_list params);
+int								ft_printf(const char *str, ...);
+int								print_char(char c, t_format_config config);
+int								print_repeat(char c, int count);
+int								print_pad(t_print_pad_params params,
+									int (*printer)(void *));
+int								print_str(char *str, t_format_config config);
 
-void				free_mem(t_printer **registry);
+t_print_pad_params				get_print_pad_params(void *rest, int pad_count,
+									char padding_char, t_bool is_right);
+int								print_number(long long digit,
+									int (*print_fn)(long long *),
+									t_format_config config);
+int								print_digit(int digit, t_format_config config);
+int								print_unsigned(unsigned int digit,
+									t_format_config config);
 
-int					ft_printf(const char *format, ...);
-
-t_printer			*int_printer(void);
-t_printer			*char_printer(void);
-t_printer			*str_printer(void);
-t_printer			*decimal_printer(void);
-t_printer			*unsignedint_printer(void);
-
-int					get_hex(int n, int use_upper);
-int					hex_base_printf(va_list params, int uppper);
-t_printer			*hex_lower_printer(void);
-t_printer			*hex_upper_printer(void);
-t_printer			*percent_printer(void);
-t_printer			*pointer_printer(void);
-
+int								print_hex_prefix(unsigned int hex,
+									t_bool use_upper);
+int								get_hex_len(unsigned int n);
+int								print_hex(unsigned int hex, t_bool use_upper,
+									t_format_config config);
+int								print_ptr(void *ptr, t_format_config config);
 #endif // FT_PRINTF_H

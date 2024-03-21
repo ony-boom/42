@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 05:57:07 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/03 14:22:19 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/16 11:21:59 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char				*ft_substr(char const *s, unsigned int start, int len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
+
+int					get_int_len(long x);
 char				*ft_itoa(int n);
 long				ft_abs(long n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));

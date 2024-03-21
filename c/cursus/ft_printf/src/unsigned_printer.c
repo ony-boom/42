@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unsignedint_printer.c                              :+:      :+:    :+:   */
+/*   unsigned_printer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/03 13:34:37 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 19:27:34 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/20 17:51:37 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/22 00:04:20 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int	print_unsigned(unsigned int n)
+static int	unsigned_printer(unsigned int n)
 {
 	int	printed;
 
 	printed = 0;
 	if (n >= 10)
 	{
-		printed += print_unsigned((n / 10));
-		printed += print_unsigned((n % 10));
+		printed += unsigned_printer((n / 10));
+		printed += unsigned_printer((n % 10));
 	}
 	else
 		printed += ft_putchar_fd(n + '0', 1);
 	return (printed);
 }
 
-static int	printer(va_list params)
+int	unsigned_print_fn(void *p_unsigned)
 {
 	unsigned int	n;
 
-	n = va_arg(params, unsigned int);
-	return (print_unsigned(n));
+	n = *(int *)p_unsigned;
+	return (unsigned_printer(n));
 }
 
-t_printer	*unsignedint_printer(void)
+int	print_unsigned(unsigned int digit, t_format_config config)
 {
-	return (printer_new(UNSIGNED_INT, printer));
+	return (print_number(digit, (int (*)(long long *))unsigned_print_fn,
+		config));
 }

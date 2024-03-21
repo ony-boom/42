@@ -5,29 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/03 13:38:05 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/05 19:25:49 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/03/21 12:20:21 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/03/21 23:32:22 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	get_hex(int n, int use_upper)
-{
-	char	c;
-
-	if (n < 10)
-		return ('0' + n);
-	else
-	{
-		c = 'a';
-		if (use_upper)
-			c = 'A';
-		return (c + n - 10);
-	}
-}
-
-static int	print_hex(unsigned int n, int use_upper)
+int	hex_printer(unsigned int n, t_bool use_upper)
 {
 	int							printed;
 	static const unsigned int	base = 16;
@@ -35,28 +20,55 @@ static int	print_hex(unsigned int n, int use_upper)
 	printed = 0;
 	if (n >= base)
 	{
-		printed += print_hex((n / base), use_upper);
-		printed += print_hex((n % base), use_upper);
+		printed += hex_printer((n / base), use_upper);
+		printed += hex_printer((n % base), use_upper);
 	}
 	else
-		printed += ft_putchar_fd(get_hex(n, use_upper), 1);
+		printed += ft_putchar_fd((char)get_hex(n, use_upper), 1);
 	return (printed);
 }
 
-int	hex_base_printf(va_list params, int use_upper)
+int	hex_printer_fn(void *p_hex, t_bool use_upper)
 {
-	unsigned int	n;
+	unsigned int	hex;
 
-	n = va_arg(params, unsigned int);
-	return (print_hex(n, use_upper));
+	hex = *(unsigned int *)p_hex;
+	return (hex_printer(hex, use_upper));
 }
 
-static int	print_lower_hex(va_list params)
+int	lower_hex_printer_fn(void *p_hex)
 {
-	return (hex_base_printf(params, 0));
+	return (hex_printer_fn(p_hex, FALSE));
 }
 
-t_printer	*hex_lower_printer(void)
+int	upper_hex_printer_fn(void *p_hex)
 {
-	return (printer_new(HEX, print_lower_hex));
+	return (hex_printer_fn(p_hex, TRUE));
+}
+
+int	print_hex(unsigned int hex, t_bool use_upper, t_format_config config)
+{
+	int							pad;
+	int							printed;
+	char						padding_char;
+	int							(*print_fn)(void *);
+	t_format_modifier_config	modifier;
+
+	printed = 0;
+	padding_char = ' ';
+	print_fn = lower_hex_printer_fn;
+	modifier = config.modifier_config;
+	pad = modifier.pad.len - get_hex_len(hex);
+	if (use_upper)
+		print_fn = upper_hex_printer_fn;
+	if (!config.has_config || (pad <= 0 && !config.modifier_config.pad.is_dot
+			&& !config.modifier_config.prepend_hex_prefix))
+		return (hex_printer(hex, use_upper));
+	if (config.modifier_config.pad.is_zero || config.modifier_config.pad.is_dot)
+		padding_char = '0';
+	if (config.modifier_config.prepend_hex_prefix)
+		printed += print_hex_prefix(hex, use_upper);
+	printed += print_pad(get_print_pad_params(&hex, pad, padding_char,
+				modifier.pad.is_right), print_fn);
+	return (printed);
 }
