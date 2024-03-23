@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/21 23:49:18 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:17:17 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,11 @@ int								print_digit(int digit, t_format_config config);
 int								print_unsigned(unsigned int digit,
 									t_format_config config);
 
+int								hex_printer(unsigned long int n,
+									t_bool use_upper);
 int								print_hex_prefix(unsigned int hex,
 									t_bool use_upper);
-int								get_hex_len(unsigned int n);
+int								get_hex_len(unsigned long int n);
 int								print_hex(unsigned int hex, t_bool use_upper,
 									t_format_config config);
 int								print_ptr(void *ptr, t_format_config config);

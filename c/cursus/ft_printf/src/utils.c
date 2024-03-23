@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:22:08 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/21 23:32:37 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:16:58 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	get_hex(int n, int use_upper)
 	}
 }
 
-int	get_hex_len(unsigned int n)
+int	get_hex_len(unsigned long int n)
 {
 	int	len;
 

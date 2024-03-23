@@ -6,16 +6,16 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:20:21 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/21 23:32:22 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:11:42 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	hex_printer(unsigned int n, t_bool use_upper)
+int	hex_printer(unsigned long int n, t_bool use_upper)
 {
-	int							printed;
-	static const unsigned int	base = 16;
+	int						printed;
+	const unsigned long int	base = 16;
 
 	printed = 0;
 	if (n >= base)

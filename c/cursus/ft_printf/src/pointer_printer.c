@@ -6,45 +6,27 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 22:51:29 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/22 00:05:01 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:18:56 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
 static int	get_pointer_len(void *ptr)
 {
-	int					len;
-	unsigned long int	temp;
-
-	len = 0;
-	temp = (unsigned long int)ptr;
-	while (temp != 0)
-	{
-		len++;
-		temp /= 16;
-	}
-	return (len + 2);
+	return (get_hex_len((unsigned long int)ptr) + 2);
 }
 
 static int	pointer_printer(void *pointer_like)
 {
-	int			shift;
-	int			printed;
 	uintptr_t	ptr;
+	int			printed;
 
 	printed = 0;
 	ptr = (uintptr_t)pointer_like;
 	if (!ptr)
 		return (ft_putstr_fd("(nil)", 1));
 	printed += ft_putstr_fd("0x", 1);
-	shift = (sizeof(ptr) << 3) - 4;
-	while (shift >= 0 && ((ptr >> shift) & 0xf) == 0)
-		shift -= 4;
-	while (shift >= 0)
-	{
-		printed += ft_putchar_fd((char)get_hex((int)(ptr >> shift) & 0xf, 0), 1);
-		shift -= 4;
-	}
+	printed += hex_printer(ptr, FALSE);
 	return (printed);
 }
 
