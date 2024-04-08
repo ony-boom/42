@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pad.c                                        :+:      :+:    :+:   */
+/*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 19:45:49 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/22 00:06:29 by rony-lov         ###   ########.fr       */
+/*   Created: 2024/04/06 21:40:59 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/04/07 19:02:30 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	print_pad(t_print_pad_params params, int (*printer)(void *))
+int	print_repeat(char c, int count)
 {
 	int	printed;
 
 	printed = 0;
-	if (params.is_right)
-	{
-		printed += printer(params.rest);
-		printed += print_repeat(params.padding_char, params.padding_count);
-	}
-	else
-	{
-		printed += print_repeat(params.padding_char, params.padding_count);
-		printed += printer(params.rest);
-	}
+	while (printed < count)
+		printed += ft_putchar_fd(c, 1);
 	return (printed);
 }

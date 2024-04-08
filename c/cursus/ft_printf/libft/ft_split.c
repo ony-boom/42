@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:29:16 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/02/25 19:19:18 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:49:04 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static char	*get_first(char **str, char c)
 	return (ft_substr(trimmed, 0, w_len));
 }
 
-static char	*trim_c_start(const char *str, char c)
+char	*trim_c_start(const char *str, char c)
 {
 	while (*str && *str == c)
 		str++;
