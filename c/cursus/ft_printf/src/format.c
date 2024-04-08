@@ -51,42 +51,40 @@ void	init_config(t_format_config *format_config)
 			sizeof(t_format_config_modifier));
 }
 
-int	trim_format(char *format)
+int	set_format_config(t_format_config *format_config, char *format,
+		int *modifier_index)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	while (is_valid_format_modifier(format[count]))
-		count++;
-	if (count)
-		count--;
-	return (count);
-}
-
-t_format_config	new_format_config(char *format)
-{
-	int i;
-	int modifier_index;
-	t_format_config format_config;
-
-	i = trim_format(format);
-	modifier_index = 0;
-	init_config(&format_config);
+	i = 0;
 	while (format[i] && !is_valid_format_specifier(format[i]))
 	{
 		if (ft_isdigit(format[i]) || is_valid_format_modifier(format[i]))
 		{
 			i += parse_modifier(format + i,
-					&format_config.modifiers[modifier_index]);
-			modifier_index++;
+					&format_config->modifiers[*modifier_index]);
+			(*modifier_index)++;
 			continue ;
 		}
 		i++;
 	}
-	format_config.len = i;
-	if (is_valid_format_specifier(format[i]))
+	return (i);
+}
+
+t_format_config	new_format_config(char *format)
+{
+	int len;
+	int modifier_index;
+	t_format_config format_config;
+
+	modifier_index = 0;
+	len = trim_format(format);
+	init_config(&format_config);
+	len = set_format_config(&format_config, format, &modifier_index);
+	format_config.len = len;
+	if (is_valid_format_specifier(format[len]))
 	{
-		format_config.specifier = (t_format_specifier)(format[i]);
+		format_config.specifier = (t_format_specifier)(format[len]);
 		format_config.len++;
 	}
 	format_config.modifiers_size = modifier_index;
