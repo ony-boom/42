@@ -3,73 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:22:08 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/03/23 14:16:58 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:01:44 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	get_hex(int n, int use_upper)
+t_bool	is_valid_format_specifier(char c)
 {
-	char	c;
+	const t_format_specifier	specifiers[] = {CHAR, INTEGER, STR, DECIMAL,
+			POINTER, UNSIGNED_INT, HEX, UPPER_HEX, PERCENT};
+	int							i;
+	int							size;
 
-	if (n < 10)
-		return ('0' + n);
-	else
+	i = 0;
+	size = sizeof(specifiers) / sizeof(specifiers[0]);
+	while (i < size)
 	{
-		c = 'a';
-		if (use_upper)
-			c = 'A';
-		return (c + n - 10);
+		if (specifiers[i] == (t_format_specifier)c)
+			return (TRUE);
+		i++;
 	}
+	return (FALSE);
 }
 
-int	get_hex_len(unsigned long int n)
+t_bool	is_valid_format_modifier(char c)
 {
-	int	len;
+	const t_format_modifier	modifiers[] = {MINUS, ZERO, DOT, SHARP, SPACE,
+			PLUS};
+	int						i;
+	int						size;
 
-	if (n == 0)
-		return (1);
-	len = 0;
-	while (n != 0)
+	i = 0;
+	size = sizeof(modifiers) / sizeof(modifiers[0]);
+	while (i < size)
 	{
-		n /= 16;
-		len++;
+		if (modifiers[i] == (t_format_modifier)c)
+			return (TRUE);
+		i++;
 	}
-	return (len);
+	return (FALSE);
 }
 
-int	print_hex_prefix(unsigned int hex, t_bool use_upper)
+t_bool	is_number_specifier(t_format_specifier specifier)
 {
-	if (hex == 0)
-		return (0);
-	if (use_upper)
-		return (ft_putstr_fd("0X", 1));
-	else
-		return (ft_putstr_fd("0x", 1));
+	return (t_bool)(specifier == DECIMAL || specifier == UNSIGNED_INT
+		|| specifier == INTEGER);
 }
 
-int	print_repeat(char c, int count)
+t_bool	is_pad_modifier(t_format_modifier modifier,
+		t_format_specifier specifier)
 {
-	int	printed;
-
-	printed = 0;
-	while (printed < count)
-		printed += ft_putchar_fd(c, 1);
-	return (printed);
-}
-
-t_print_pad_params	get_print_pad_params(void *rest, int pad_count,
-		char padding_char, t_bool is_right)
-{
-	t_print_pad_params	params;
-
-	params.rest = rest;
-	params.is_right = is_right;
-	params.padding_count = pad_count;
-	params.padding_char = padding_char;
-	return (params);
+	return (t_bool)((modifier == DIGIT || modifier == MINUS || modifier == ZERO)
+		|| (modifier == SPACE && specifier == STR));
 }
