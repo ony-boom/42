@@ -5,7 +5,7 @@ int	main(void)
 {
 	int	me;
 	int	them;
-	me = ft_printf("%032d\n", -2147483648);
-	them = printf("%032d\n", -2147483648);
+	me = ft_printf("%-20.18d\n", -214748364);
+	them = printf("%-20.18d\n", -214748364);
 	printf("Mine %d, theirs %d\n", me, them);
 }

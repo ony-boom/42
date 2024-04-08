@@ -19,7 +19,7 @@ int	print_type(t_format_config *config, va_list params)
 	if (config->specifier == PERCENT)
 		return (print_char('%', config));
 	if (config->specifier == DECIMAL || config->specifier == INTEGER)
-	  return (print_number((va_arg(params, int)), config));
+		return (print_number((va_arg(params, int)), config));
 	return (0);
 }
 

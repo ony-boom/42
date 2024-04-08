@@ -60,3 +60,15 @@ t_bool	is_pad_modifier(t_format_modifier modifier,
 	return (t_bool)((modifier == DIGIT || modifier == MINUS || modifier == ZERO)
 		|| (modifier == SPACE && specifier == STR));
 }
+
+int	trim_format(char *format)
+{
+	int count;
+
+	count = 0;
+	while (is_valid_format_modifier(format[count]))
+		count++;
+	if (count)
+		count--;
+	return (count);
+}

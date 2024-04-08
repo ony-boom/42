@@ -34,12 +34,9 @@ LIBFT_SRC = libft/ft_lstclear_bonus.c libft/ft_lstsize_bonus.c\
 						libft/ft_strlen.c libft/ft_memchr.c\
 						libft/ft_calloc.c libft/ft_memmove.c
 
-PRINTF_SRC = src/format_config.c src/format_modifier_handler.c\
-						 src/utils.c src/ft_printf.c\
-						 src/printer.c src/specifier.c\
-						 src/char_printer.c src/print_pad.c\
-						 src/str_printer.c src/digit_printer.c\
-						 src/unsigned_printer.c src/hex_printer.c src/pointer_printer.c
+PRINTF_SRC = src/char.c src/format.c src/ft_printf.c\
+						 src/hex_utils.c src/number.c src/number_utils.c\
+						 src/print_utils.c src/print_utils.c src/utils.c
 
 LIBFT_OBJ = $(LIBFT_SRC:$(LIBFT_DIR)/%.c=$(OBJ_DIR)/%.o)
 PRINTF_OBJ = $(PRINTF_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
