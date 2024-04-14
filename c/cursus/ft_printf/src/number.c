@@ -6,12 +6,11 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 10:08:29 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/14 12:03:22 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/14 14:21:35 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 void					init_number_format(t_number_format *format, int n);
 
