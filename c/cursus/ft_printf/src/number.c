@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 10:08:29 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/14 14:21:35 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:04:44 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void					set_sign(t_number_format *format,
 							t_format_config_modifier *modifier,
 							int to_print_len, t_bool is_negative);
 
-static t_number_format	build_format(t_format_config *config, int number,
+t_number_format	build_number_format(t_format_config *config, int number,
 		int to_print_len, t_bool is_negative)
 {
 	int							i;
@@ -116,7 +116,7 @@ int	print_number(int n, t_format_config *config)
 
 	printed = 0;
 	n_len = get_int_len(ft_abs(n));
-	format = build_format(config, n, n_len, (t_bool)(n < 0));
+	format = build_number_format(config, n, n_len, (t_bool)(n < 0));
 	printed += print_number_with_format(n, &format);
 	return (printed);
 }

@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/08 14:17:45 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:03:50 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct sign
 
 typedef struct number_format
 {
-	int							number;
+	long long							number;
 	t_bool						is_zero;
 	t_format_sign				sign;
 	t_pad						zero_pad;
