@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:22:08 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/07 19:01:44 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/09 07:13:53 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,13 @@ t_bool	is_pad_modifier(t_format_modifier modifier,
 
 int	trim_format(char *format)
 {
-	int count;
+	int					count;
+	t_format_modifier	to_trim;
 
 	count = 0;
-	while (is_valid_format_modifier(format[count]))
+	to_trim = (t_format_modifier)format[0];
+	while (is_valid_format_modifier(format[count])
+		&& (t_format_modifier)format[count] == to_trim)
 		count++;
 	if (count)
 		count--;

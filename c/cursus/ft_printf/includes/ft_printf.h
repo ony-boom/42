@@ -18,7 +18,7 @@
 # include <stdlib.h>
 
 # define MAX_MODIFIER_COUNT 6
-# define MY_INT_MIN -2147483648
+# define MY_INT_MIN (-2147483648)
 
 typedef enum my_bool
 {
@@ -68,8 +68,10 @@ typedef struct format_config
 typedef struct pad
 {
 	int							count;
+	int							original_value;
 	char						padding_char;
 	t_bool						from_right;
+	t_bool						initialized;
 }								t_pad;
 
 typedef struct sign
@@ -80,6 +82,8 @@ typedef struct sign
 
 typedef struct number_format
 {
+	int							number;
+	t_bool						is_zero;
 	t_format_sign				sign;
 	t_pad						zero_pad;
 	t_pad						space_pad;
