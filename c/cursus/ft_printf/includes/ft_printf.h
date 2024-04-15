@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/14 19:03:50 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/15 07:10:16 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ typedef struct sign
 
 typedef struct number_format
 {
-	long long							number;
+	long long					number;
 	t_bool						is_zero;
+	t_bool is_unsigned;
 	t_format_sign				sign;
 	t_pad						zero_pad;
 	t_pad						space_pad;
@@ -104,7 +105,8 @@ int								print_char(char c, t_format_config *config);
 
 int								trim_format(char *format);
 int								print_number(int n, t_format_config *config);
-
+int								print_unsigned(unsigned int n,
+									t_format_config *config);
 int								print_repeat(char c, int count);
 
 #endif // FT_PRINTF_H
