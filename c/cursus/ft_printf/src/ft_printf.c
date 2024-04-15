@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 11:36:36 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/08 07:08:45 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:29:20 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	print_type(t_format_config *config, va_list params)
 		return (print_char('%', config));
 	if (config->specifier == DECIMAL || config->specifier == INTEGER)
 		return (print_number((va_arg(params, int)), config));
+	if (config->specifier == UNSIGNED_INT)
+		return (print_unsigned(va_arg(params, unsigned int), config));
 	return (0);
 }
 

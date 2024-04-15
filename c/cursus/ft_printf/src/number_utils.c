@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:17:22 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/14 19:01:01 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/15 07:14:59 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_number_format(t_number_format *format, int n)
 {
+	format->is_unsigned = FALSE;
 	format->is_zero = FALSE;
 	format->number = n;
 	format->sign = (t_format_sign){.show = FALSE, .positive_sign = '+'};
@@ -31,9 +32,9 @@ void	set_pad(t_pad *pad, t_format_config_modifier *modifier,
 	pad->padding_char = ' ';
 	if (modifier->modifier_specifier == ZERO)
 		pad->padding_char = '0';
-	pad->count = modifier->value - to_print_len
-		- (int)(modifier->modifier_specifier == PLUS
-			|| modifier->modifier_specifier == SPACE) - (int)is_negative;
+	pad->count = (modifier->value - to_print_len
+			- (int)(modifier->modifier_specifier == PLUS
+				|| modifier->modifier_specifier == SPACE)) - (int)is_negative;
 	if (pad->count <= 0)
 		pad->count = 0;
 	pad->from_right = (t_bool)(modifier->modifier_specifier == MINUS);
@@ -75,4 +76,10 @@ void	set_sign(t_number_format *format, t_format_config_modifier *modifier,
 		format->sign.show = TRUE;
 	if (modifier->modifier_specifier == SPACE)
 		format->sign.positive_sign = ' ';
+}
+
+t_bool	hide_minus_sign(t_number_format *format)
+{
+	return (format->space_pad.padding_char != ZERO || format->number >= 0
+		|| format->is_unsigned);
 }

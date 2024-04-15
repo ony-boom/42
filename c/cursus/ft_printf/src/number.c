@@ -6,24 +6,25 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 10:08:29 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/14 19:04:44 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/15 07:18:44 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void					init_number_format(t_number_format *format, int n);
+void			init_number_format(t_number_format *format, int n);
 
-void					set_pad(t_pad *pad, t_format_config_modifier *modifier,
-							int to_print_len, t_bool is_negative);
+void			set_pad(t_pad *pad, t_format_config_modifier *modifier,
+					int to_print_len, t_bool is_negative);
 
-void					set_max_width(t_number_format *format,
-							t_format_config_modifier *modifier,
-							int to_print_len);
+void			set_max_width(t_number_format *format,
+					t_format_config_modifier *modifier, int to_print_len);
 
-void					set_sign(t_number_format *format,
-							t_format_config_modifier *modifier,
-							int to_print_len, t_bool is_negative);
+void			set_sign(t_number_format *format,
+					t_format_config_modifier *modifier, int to_print_len,
+					t_bool is_negative);
+
+t_bool			hide_minus_sign(t_number_format *format);
 
 t_number_format	build_number_format(t_format_config *config, int number,
 		int to_print_len, t_bool is_negative)
@@ -52,7 +53,7 @@ t_number_format	build_number_format(t_format_config *config, int number,
 	return (format);
 }
 
-int	print_max_width(int n, t_number_format *format, t_bool show_sign)
+static int	print_max_width(int n, t_number_format *format, t_bool show_sign)
 {
 	t_pad	pad;
 	int		abs_n;
@@ -80,20 +81,21 @@ int	print_max_width(int n, t_number_format *format, t_bool show_sign)
 	return (printed);
 }
 
-int	print_number_with_format(int n, t_number_format *format)
+int	print_number_with_format(int n, t_number_format *format, int (*printer)(int,
+			t_number_format *, t_bool))
 {
 	int		printed;
-	t_bool	no_minus;
+	t_bool	hide_minus;
 
 	printed = 0;
-	no_minus = (t_bool)(format->space_pad.padding_char != ZERO || n >= 0);
-	if (!no_minus)
+	hide_minus = hide_minus_sign(format);
+	if (!hide_minus)
 		printed += ft_putchar_fd('-', 1);
 	if (format->space_pad.from_right)
 	{
 		if (format->sign.show)
 			printed += ft_putchar_fd(format->sign.positive_sign, 1);
-		printed += print_max_width(n, format, no_minus);
+		printed += printer(n, format, hide_minus);
 		printed += print_repeat(format->space_pad.padding_char,
 				format->space_pad.count);
 	}
@@ -103,7 +105,7 @@ int	print_number_with_format(int n, t_number_format *format)
 				format->space_pad.count);
 		if (format->sign.show)
 			printed += ft_putchar_fd(format->sign.positive_sign, 1);
-		printed += print_max_width(n, format, no_minus);
+		printed += printer(n, format, hide_minus);
 	}
 	return (printed);
 }
@@ -117,6 +119,6 @@ int	print_number(int n, t_format_config *config)
 	printed = 0;
 	n_len = get_int_len(ft_abs(n));
 	format = build_number_format(config, n, n_len, (t_bool)(n < 0));
-	printed += print_number_with_format(n, &format);
+	printed += print_number_with_format(n, &format, print_max_width);
 	return (printed);
 }

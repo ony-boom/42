@@ -36,7 +36,8 @@ LIBFT_SRC = libft/ft_lstclear_bonus.c libft/ft_lstsize_bonus.c\
 
 PRINTF_SRC = src/char.c src/format.c src/ft_printf.c\
 						 src/hex_utils.c src/number.c src/number_utils.c\
-						 src/print_utils.c src/print_utils.c src/utils.c
+						 src/print_utils.c src/print_utils.c src/utils.c\
+						 src/unsigned.c
 
 LIBFT_OBJ = $(LIBFT_SRC:$(LIBFT_DIR)/%.c=$(OBJ_DIR)/%.o)
 PRINTF_OBJ = $(PRINTF_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
