@@ -12,9 +12,11 @@
 
 #include "../includes/ft_printf.h"
 
-void	init_number_format(t_number_format *format, int n)
+void	init_number_format(t_number_format *format, long long n)
 {
 	format->is_unsigned = FALSE;
+	format->hex_format = (t_hex_format){.use_upper = FALSE,
+		.initialized = FALSE, .prefix_0x = FALSE};
 	format->is_zero = FALSE;
 	format->number = n;
 	format->sign = (t_format_sign){.show = FALSE, .positive_sign = '+'};

@@ -5,7 +5,7 @@ int	main(void)
 {
 	int	me;
 	int	them;
-	me = ft_printf("[%2u]\n", 1);
-	them = printf("[%2u]\n", 1);
+	me = ft_printf("[%#8.4x]\n", 10);
+	them = printf("[%#8.4x]\n", 10);
 	printf("Mine %d, theirs %d\n", me, them);
 }

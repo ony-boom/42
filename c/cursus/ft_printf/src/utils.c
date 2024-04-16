@@ -48,12 +48,6 @@ t_bool	is_valid_format_modifier(char c)
 	return (FALSE);
 }
 
-t_bool	is_number_specifier(t_format_specifier specifier)
-{
-	return (t_bool)(specifier == DECIMAL || specifier == UNSIGNED_INT
-		|| specifier == INTEGER);
-}
-
 t_bool	is_pad_modifier(t_format_modifier modifier,
 		t_format_specifier specifier)
 {

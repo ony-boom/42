@@ -22,6 +22,9 @@ int	print_type(t_format_config *config, va_list params)
 		return (print_number((va_arg(params, int)), config));
 	if (config->specifier == UNSIGNED_INT)
 		return (print_unsigned(va_arg(params, unsigned int), config));
+	if (config->specifier == HEX || config->specifier == UPPER_HEX)
+		return (print_hex(va_arg(params, unsigned long int),
+				(t_bool)(config->specifier == UPPER_HEX), config));
 	return (0);
 }
 
