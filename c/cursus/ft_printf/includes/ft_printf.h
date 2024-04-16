@@ -80,14 +80,22 @@ typedef struct sign
 	char						positive_sign;
 }								t_format_sign;
 
+typedef struct hex_format
+{
+	t_bool						use_upper;
+	t_bool						prefix_0x;
+	t_bool						initialized;
+}								t_hex_format;
+
 typedef struct number_format
 {
 	long long					number;
 	t_bool						is_zero;
-	t_bool is_unsigned;
+	t_bool						is_unsigned;
 	t_format_sign				sign;
 	t_pad						zero_pad;
 	t_pad						space_pad;
+	t_hex_format				hex_format;
 }								t_number_format;
 
 t_bool							is_valid_format_specifier(char c);
@@ -106,6 +114,8 @@ int								print_char(char c, t_format_config *config);
 int								trim_format(char *format);
 int								print_number(int n, t_format_config *config);
 int								print_unsigned(unsigned int n,
+									t_format_config *config);
+int								print_hex(unsigned long int n, t_bool use_upper,
 									t_format_config *config);
 int								print_repeat(char c, int count);
 

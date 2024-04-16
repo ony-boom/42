@@ -22,15 +22,15 @@ void			set_pad(t_pad *pad, t_format_config_modifier *modifier,
 void			set_max_width(t_number_format *format,
 					t_format_config_modifier *modifier, int to_print_len);
 
-t_number_format	build_number_format(t_format_config *config, int number,
+t_number_format	build_number_format(t_format_config *config, long long number,
 					int to_print_len, t_bool is_negative);
 
-int				print_number_with_format(int n, t_number_format *format,
-					int (*printer)(int, t_number_format *, t_bool));
+int				print_number_with_format(long long n, t_number_format *format,
+					int (*printer)(long long, t_number_format *, t_bool));
 
 int	unsigned_printer(unsigned int n)
 {
-    int		i;
+	int		i;
 	int		printed;
 	char	str[11];
 
@@ -48,18 +48,16 @@ int	unsigned_printer(unsigned int n)
 	return (printed);
 }
 
-static int	print_max_width(int n, t_number_format *format, t_bool show_minus)
+int	print_unsigned_max_width(long long n, t_number_format *format,
+		t_bool show_minus)
 {
 	t_pad	pad;
 	int		printed;
-	t_bool	can_print_pad;
 
 	printed = 0;
 	(void)show_minus;
 	pad = format->zero_pad;
-	can_print_pad = (t_bool)(pad.count > 0);
-	if (can_print_pad)
-		printed += print_repeat(pad.padding_char, pad.count);
+	printed += print_repeat(pad.padding_char, pad.count);
 	if (format->is_zero)
 		return (printed);
 	printed += unsigned_printer(n);
@@ -76,6 +74,6 @@ int	print_unsigned(unsigned int n, t_format_config *config)
 	n_len = get_int_len(ft_abs(n));
 	format = build_number_format(config, n, n_len, FALSE);
 	format.is_unsigned = TRUE;
-	printed += print_number_with_format(n, &format, print_max_width);
+	printed += print_number_with_format(n, &format, print_unsigned_max_width);
 	return (printed);
 }

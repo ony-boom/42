@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void			init_number_format(t_number_format *format, int n);
+void			init_number_format(t_number_format *format, long long n);
 
 void			set_pad(t_pad *pad, t_format_config_modifier *modifier,
 					int to_print_len, t_bool is_negative);
@@ -26,7 +26,7 @@ void			set_sign(t_number_format *format,
 
 t_bool			hide_minus_sign(t_number_format *format);
 
-t_number_format	build_number_format(t_format_config *config, int number,
+t_number_format	build_number_format(t_format_config *config, long long number,
 		int to_print_len, t_bool is_negative)
 {
 	int							i;
@@ -53,23 +53,21 @@ t_number_format	build_number_format(t_format_config *config, int number,
 	return (format);
 }
 
-static int	print_max_width(int n, t_number_format *format, t_bool show_sign)
+static int	print_max_width(long long n, t_number_format *format,
+		t_bool show_sign)
 {
 	t_pad	pad;
 	int		abs_n;
 	int		printed;
 	t_bool	is_negative;
-	t_bool	can_print_pad;
 
 	printed = 0;
 	pad = format->zero_pad;
 	abs_n = (int)ft_abs(n);
-	can_print_pad = (t_bool)(pad.count > 0);
 	is_negative = n < 0;
 	if (is_negative && show_sign)
 		printed += ft_putchar_fd('-', 1);
-	if (can_print_pad)
-		printed += print_repeat(pad.padding_char, pad.count);
+	printed += print_repeat(pad.padding_char, pad.count);
 	if (format->is_zero)
 		return (printed);
 	if (abs_n == MY_INT_MIN)
@@ -81,8 +79,8 @@ static int	print_max_width(int n, t_number_format *format, t_bool show_sign)
 	return (printed);
 }
 
-int	print_number_with_format(int n, t_number_format *format, int (*printer)(int,
-			t_number_format *, t_bool))
+int	print_number_with_format(long long n, t_number_format *format,
+		int (*printer)(long long, t_number_format *, t_bool))
 {
 	int		printed;
 	t_bool	hide_minus;
