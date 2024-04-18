@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 11:36:36 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/14 19:29:20 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/16 23:21:15 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ int	print_type(t_format_config *config, va_list params)
 	if (config->specifier == UNSIGNED_INT)
 		return (print_unsigned(va_arg(params, unsigned int), config));
 	if (config->specifier == HEX || config->specifier == UPPER_HEX)
-		return (print_hex(va_arg(params, unsigned long int),
+		return (print_hex(va_arg(params, unsigned int),
 				(t_bool)(config->specifier == UPPER_HEX), config));
+	if (config->specifier == POINTER)
+		return (print_pointer(va_arg(params, void *), config));
+	if (config->specifier == STR)
+		return (print_str(va_arg(params, char *), config));
 	return (0);
 }
 

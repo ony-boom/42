@@ -1,9 +1,11 @@
 .clang-format
 */**/obj
 */**/test
+*/**/test2
 */**/*.a
 */**/*.out
 */**/.vscode
 */**/.idea
 .idea
 .vscode
+

@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:28:43 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/15 07:10:16 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/18 08:06:16 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <stdarg.h>
+# include <stdint.h>
 # include <stdlib.h>
 
 # define MAX_MODIFIER_COUNT 6
@@ -98,12 +99,23 @@ typedef struct number_format
 	t_hex_format				hex_format;
 }								t_number_format;
 
+typedef struct s_format_config
+{
+	t_pad						pad;
+	char						*str;
+	int							precision;
+}								t_str_format_config;
+
 t_bool							is_valid_format_specifier(char c);
 
 t_bool							is_valid_format_modifier(char c);
 
 t_bool							is_pad_modifier(t_format_modifier modifier,
 									t_format_specifier specifier);
+
+void							set_base_pad(t_pad *pad,
+									t_format_config_modifier *modifier,
+									int to_print_len, t_bool is_negative);
 
 t_format_config					new_format_config(char *format);
 
@@ -115,8 +127,11 @@ int								trim_format(char *format);
 int								print_number(int n, t_format_config *config);
 int								print_unsigned(unsigned int n,
 									t_format_config *config);
-int								print_hex(unsigned long int n, t_bool use_upper,
+int								print_hex(unsigned int n, t_bool use_upper,
 									t_format_config *config);
+int								print_pointer(void *n, t_format_config *config);
+
+int								print_str(char *str, t_format_config *config);
 int								print_repeat(char c, int count);
 
 #endif // FT_PRINTF_H

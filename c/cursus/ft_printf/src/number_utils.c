@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:17:22 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/15 07:14:59 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/18 07:45:33 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,6 @@ void	init_number_format(t_number_format *format, long long n)
 		.from_right = FALSE, .initialized = FALSE};
 	format->zero_pad = (t_pad){.count = 0, .padding_char = '0',
 		.from_right = FALSE, .initialized = FALSE};
-}
-
-void	set_pad(t_pad *pad, t_format_config_modifier *modifier,
-		int to_print_len, t_bool is_negative)
-{
-	pad->original_value = modifier->value;
-	pad->initialized = TRUE;
-	pad->padding_char = ' ';
-	if (modifier->modifier_specifier == ZERO)
-		pad->padding_char = '0';
-	pad->count = (modifier->value - to_print_len
-			- (int)(modifier->modifier_specifier == PLUS
-				|| modifier->modifier_specifier == SPACE)) - (int)is_negative;
-	if (pad->count <= 0)
-		pad->count = 0;
-	pad->from_right = (t_bool)(modifier->modifier_specifier == MINUS);
 }
 
 void	set_max_width(t_number_format *format,
@@ -73,7 +57,7 @@ void	set_max_width(t_number_format *format,
 void	set_sign(t_number_format *format, t_format_config_modifier *modifier,
 		int to_print_len, t_bool is_negative)
 {
-	set_pad(&format->space_pad, modifier, to_print_len, is_negative);
+	set_base_pad(&format->space_pad, modifier, to_print_len, is_negative);
 	if (format->number >= 0)
 		format->sign.show = TRUE;
 	if (modifier->modifier_specifier == SPACE)
