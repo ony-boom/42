@@ -6,7 +6,7 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 21:30:28 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/07 19:02:26 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/16 23:21:52 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	get_hex_len(unsigned long int n)
 {
 	int	len;
 
+	len = 0;
 	if (n == 0)
 		return (1);
-	len = 0;
 	while (n != 0)
 	{
 		n /= 16;

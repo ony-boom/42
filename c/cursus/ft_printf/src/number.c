@@ -6,16 +6,13 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 10:08:29 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/15 07:18:44 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/18 07:22:04 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
 void			init_number_format(t_number_format *format, long long n);
-
-void			set_pad(t_pad *pad, t_format_config_modifier *modifier,
-					int to_print_len, t_bool is_negative);
 
 void			set_max_width(t_number_format *format,
 					t_format_config_modifier *modifier, int to_print_len);
@@ -41,7 +38,7 @@ t_number_format	build_number_format(t_format_config *config, long long number,
 		if (current_modifier.modifier_specifier == DIGIT
 			|| current_modifier.modifier_specifier == ZERO
 			|| current_modifier.modifier_specifier == MINUS)
-			set_pad(&format.space_pad, &current_modifier, to_print_len,
+			set_base_pad(&format.space_pad, &current_modifier, to_print_len,
 				is_negative);
 		if (current_modifier.modifier_specifier == DOT)
 			set_max_width(&format, &current_modifier, to_print_len);

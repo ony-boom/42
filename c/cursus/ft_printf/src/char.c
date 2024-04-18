@@ -6,13 +6,13 @@
 /*   By: rony-lov <rony-lov@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 10:05:50 by rony-lov          #+#    #+#             */
-/*   Updated: 2024/04/09 07:05:36 by rony-lov         ###   ########.fr       */
+/*   Updated: 2024/04/18 08:26:58 by rony-lov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void	set_pad(t_pad *pad, t_format_config_modifier *modifier)
+void	set_char_pad(t_pad *pad, t_format_config_modifier *modifier)
 {
 	pad->padding_char = ' ';
 	pad->count = modifier->value - 1;
@@ -31,7 +31,7 @@ static t_pad	build_format(t_format_config *config)
 	pad.from_right = FALSE;
 	current_modifier = config->modifiers[0];
 	if (is_pad_modifier(current_modifier.modifier_specifier, config->specifier))
-		set_pad(&pad, &current_modifier);
+		set_char_pad(&pad, &current_modifier);
 	return (pad);
 }
 
