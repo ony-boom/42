@@ -1,65 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rony-lov <rony-lov@student.42antananarivo  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/18 15:50:17 by rony-lov          #+#    #+#             */
+/*   Updated: 2024/04/21 10:58:20 by rony-lov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	ft_strlen(const char *str)
 {
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-void	*ft_memset(void *s, int c, unsigned int n)
-{
-	unsigned char	*src;
-
-	src = (unsigned char *)s;
-	while (n)
-	{
-		*src = (unsigned char)c;
-		src++;
-		n--;
-	}
-	return (s);
-}
-
-void	*ft_calloc(int nitems, int size)
-{
-	unsigned char	*mem;
-
-	mem = malloc(nitems * size);
-	if (!mem)
-		return (NULL);
-	ft_memset(mem, 0, nitems * size);
-	return (mem);
-}
-
-int	ft_strlcpy(char *dst, const char *src, int size)
-{
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	if (!size)
-		return (ft_strlen(src));
-	while (i < (unsigned int)(size - 1) && src[i])
-	{
-		dst[i] = src[i];
+	while (str[i])
 		i++;
-	}
-	dst[i] = 0;
-	return (ft_strlen(src));
+	return (i);
 }
 
-char	*ft_strdup(const char *src)
+t_list	*ft_lstnew(void *content)
 {
-	int		len;
-	char	*new;
+	t_list	*new;
 
-	len = ft_strlen(src);
-	new = malloc((len + 1) * sizeof(char));
-	if (new == 0)
-		return (0);
-	ft_strlcpy(new, src, len + 1);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
 	return (new);
+}
+
+void	ft_lstadd_back(t_list **lst, t_list *new_l)
+{
+	t_list	*last;
+
+	if (!*lst)
+	{
+		*lst = new_l;
+		return ;
+	}
+	last = *lst;
+	while (last->next)
+		last = last->next;
+	last->next = new_l;
+}
+
+int	get_line_len(t_list *list)
+{
+	int	i;
+	int	len;
+
+	if (!list)
+		return (0);
+	len = 0;
+	while (list)
+	{
+		i = 0;
+		while ((list->content[i]) && (list->content[i]) != '\n')
+		{
+			len++;
+			i++;
+		}
+		list = list->next;
+	}
+	return (len);
 }
